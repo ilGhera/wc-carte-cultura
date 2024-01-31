@@ -77,7 +77,7 @@ class WCCDM_Soap_Client {
 
 		if ( $this->sandbox ) {
 			$this->local_cert = WCCDM_DIR . 'demo/wccdm-demo-certificate.pem';
-			$this->location   = 'https://wstestcartegiovani.cultura.gov.it/WSUtilizzoVoucherGMWEB/VerificaVoucher';
+			$this->location   = 'https://wstest-cartegiovani.cultura.gov.it/WSUtilizzoVoucherGMWEB/VerificaVoucher';
 			$this->passphrase = 'm3D0T4aM';
 
 		} else {
