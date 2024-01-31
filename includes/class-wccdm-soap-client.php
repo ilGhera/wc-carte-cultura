@@ -3,15 +3,15 @@
  * Gestice le chiamate del web service
  *
  * @author ilGhera
- * @package wc-carta-docente/includes
+ * @package wc-carta-del-merito/includes
  *
  * @since 1.4.0
  */
 
 /**
- * WCCD_Soap_Client class
+ * WCCDM_Soap_Client class
  */
-class WCCD_Soap_Client {
+class WCCDM_Soap_Client {
 
 	/**
 	 * Opzione sandbox
@@ -42,14 +42,14 @@ class WCCD_Soap_Client {
 	public $passphrase;
 
 	/**
-	 * Il file WSDL previsto da Carta del Docente
+	 * Il file WSDL previsto da Carta del Merito
 	 *
 	 * @var string
 	 */
 	public $wsdl;
 
 	/**
-	 * Il buono Carta del Docente
+	 * Il buono Carta del Merito
 	 *
 	 * @var string
 	 */
@@ -66,27 +66,27 @@ class WCCD_Soap_Client {
 	/**
 	 * The constructor
 	 *
-	 * @param string $codice_voucher il codice Carta del Docente.
+	 * @param string $codice_voucher il codice Carta del Merito.
 	 * @param float  $import         il valore del buono.
 	 *
 	 * @return void
 	 */
 	public function __construct( $codice_voucher, $import ) {
 
-		$this->sandbox = get_option( 'wccd-sandbox' );
+		$this->sandbox = get_option( 'wccdm-sandbox' );
 
 		if ( $this->sandbox ) {
-			$this->local_cert = WCCD_DIR . 'demo/wccd-demo-certificate.pem';
+			$this->local_cert = WCCDM_DIR . 'demo/wccdm-demo-certificate.pem';
 			$this->location   = 'https://wstest.cartadeldocente.istruzione.it/VerificaVoucherDocWEB/VerificaVoucher';
 			$this->passphrase = 'm3D0T4aM';
 
 		} else {
-			$this->local_cert = WCCD_PRIVATE . $this->get_local_cert();
+			$this->local_cert = WCCDM_PRIVATE . $this->get_local_cert();
 			$this->location   = 'https://ws.cartadeldocente.istruzione.it/VerificaVoucherDocWEB/VerificaVoucher';
 			$this->passphrase = $this->get_user_passphrase();
 		}
 
-		$this->wsdl           = WCCD_INCLUDES_URI . 'VerificaVoucher.wsdl';
+		$this->wsdl           = WCCDM_INCLUDES_URI . 'VerificaVoucher.wsdl';
 		$this->codice_voucher = $codice_voucher;
 		$this->import         = $import;
 
@@ -99,7 +99,7 @@ class WCCD_Soap_Client {
 	 * @return string
 	 */
 	public function get_local_cert() {
-		$cert = wccd_admin::get_the_file( '.pem' );
+		$cert = WCCDM_Admin::get_the_file( '.pem' );
 		if ( $cert ) {
 			return esc_html( basename( $cert ) );
 		}
@@ -112,7 +112,7 @@ class WCCD_Soap_Client {
 	 * @return string
 	 */
 	public function get_user_passphrase() {
-		return base64_decode( get_option( 'wccd-password' ) );
+		return base64_decode( get_option( 'wccdm-password' ) );
 	}
 
 

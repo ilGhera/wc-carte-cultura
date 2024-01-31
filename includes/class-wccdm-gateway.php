@@ -1,17 +1,17 @@
 <?php
 /**
- * Estende la classe WC_Payment_Gateway di WooCommerce aggiungendo il nuovo gateway "buono docente".
+ * Estende la classe WC_Payment_Gateway di WooCommerce aggiungendo il nuovo gateway Carta del Merito
  *
  * @author ilGhera
- * @package wc-carta-docente/includes
+ * @package wc-carta-del-merito/includes
  *
  * @since 1.4.0
  */
 
 /**
- * WCCD_Teacher_Gateway class
+ * WCCDM_Gateway class
  */
-class WCCD_Teacher_Gateway extends WC_Payment_Gateway {
+class WCCDM_Gateway extends WC_Payment_Gateway {
 
 	/**
 	 * The constructor
@@ -20,15 +20,15 @@ class WCCD_Teacher_Gateway extends WC_Payment_Gateway {
 	 */
 	public function __construct() {
 
-		$this->plugin_id          = 'woocommerce_carta_docente';
-		$this->id                 = 'docente';
+		$this->plugin_id          = 'woocommerce_carta_del_merito';
+		$this->id                 = 'carta-del-merito';
 		$this->has_fields         = true;
-		$this->method_title       = __( 'Buono docente', 'wccd' );
-		$this->method_description = __( 'Consente ai docenti di utilizzare il buono a loro riservato per l\'acquisto di materiale didattico.', 'wccd' );
+		$this->method_title       = __( 'Buono Carta del Merito', 'wccdm' );
+		$this->method_description = __( 'Consente ai diciottenni di utilizzare il buono a loro riservato per l\'acquisto di materiale didattico.', 'wccdm' );
 
-		if ( get_option( 'wccd-image' ) ) {
+		if ( get_option( 'wccdm-image' ) ) {
 
-			$this->icon = WCCD_URI . 'images/carta-docente.png';
+			$this->icon = WCCDM_URI . 'images/carta-del-merito.png';
 
 		}
 
@@ -40,9 +40,9 @@ class WCCD_Teacher_Gateway extends WC_Payment_Gateway {
 
 		/* Actions */
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
-		add_action( 'woocommerce_order_details_after_order_table', array( $this, 'display_teacher_code' ), 10, 1 );
-		add_action( 'woocommerce_email_after_order_table', array( $this, 'display_teacher_code' ), 10, 1 );
-		add_action( 'woocommerce_admin_order_data_after_billing_address', array( $this, 'display_teacher_code' ), 10, 1 );
+		add_action( 'woocommerce_order_details_after_order_table', array( $this, 'display_code' ), 10, 1 );
+		add_action( 'woocommerce_email_after_order_table', array( $this, 'display_code' ), 10, 1 );
+		add_action( 'woocommerce_admin_order_data_after_billing_address', array( $this, 'display_code' ), 10, 1 );
 
 	}
 
@@ -58,20 +58,20 @@ class WCCD_Teacher_Gateway extends WC_Payment_Gateway {
 				'enabled'     => array(
 					'title'   => __( 'Enable/Disable', 'woocommerce' ),
 					'type'    => 'checkbox',
-					'label'   => __( 'Abilita pagamento con buono docente', 'wccd' ),
+					'label'   => __( 'Abilita pagamento con buono Carta del Merito', 'wccdm' ),
 					'default' => 'yes',
 				),
 				'title'       => array(
 					'title'       => __( 'Title', 'woocommerce' ),
 					'type'        => 'text',
-					'description' => __( 'This controls the title which the user sees during checkout.', 'wccd' ),
-					'default'     => __( 'Buono docente', 'wccd' ),
+					'description' => __( 'This controls the title which the user sees during checkout.', 'wccdm' ),
+					'default'     => __( 'Buono Carta del Merito', 'wccdm' ),
 					'desc_tip'    => true,
 				),
 				'description' => array(
 					'title'   => __( 'Messaggio utente', 'woocommerce' ),
 					'type'    => 'textarea',
-					'default' => 'Consente ai docenti di utilizzare il buono a loro riservato per l\'acquisto di materiale didattico.',
+					'default' => 'Consente ai diciottenni di utilizzare il buono a loro riservato per l\'acquisto di materiale didattico.',
 				),
 			)
 		);
@@ -86,11 +86,11 @@ class WCCD_Teacher_Gateway extends WC_Payment_Gateway {
 		?>
 		<p>
 			<?php echo wp_kses_post( $this->description ); ?>
-			<label for="wc-codice-docente">
-				<?php esc_html_e( 'Inserisci qui il tuo codice', 'wccd' ); ?>
+			<label for="wc-codice-carta-del-merito">
+				<?php esc_html_e( 'Inserisci qui il tuo codice', 'wccdm' ); ?>
 				<span class="required">*</span>
 			</label>
-			<input type="text" class="wc-codice-docente" id="wc-codice-docente" name="wc-codice-docente" />
+			<input type="text" class="wc-codice-carta-del-merito" id="wc-codice-carta-del-merito" name="wc-codice-carta-del-merito" />
 		</p>
 		<?php
 	}
@@ -106,21 +106,21 @@ class WCCD_Teacher_Gateway extends WC_Payment_Gateway {
 	 */
 	public static function get_purchasable_cats( $purchasable, $categories = null ) {
 
-		$wccd_categories = is_array( $categories ) ? $categories : get_option( 'wccd-categories' );
+		$wccdm_categories = is_array( $categories ) ? $categories : get_option( 'wccdm-categories' );
 
-		if ( $wccd_categories ) {
+		if ( $wccdm_categories ) {
 
 			$purchasable      = str_replace( '(', '', $purchasable );
 			$purchasable      = str_replace( ')', '', $purchasable );
 			$bene             = strtolower( str_replace( ' ', '-', $purchasable ) );
 			$output           = array();
-			$count_categories = count( $wccd_categories );
+			$count_categories = count( $wccdm_categories );
 
 			for ( $i = 0; $i < $count_categories; $i++ ) {
 
-				if ( array_key_exists( $bene, $wccd_categories[ $i ] ) ) {
+				if ( array_key_exists( $bene, $wccdm_categories[ $i ] ) ) {
 
-					$output[] = $wccd_categories[ $i ][ $bene ];
+					$output[] = $wccdm_categories[ $i ][ $bene ];
 
 				}
 			}
@@ -133,7 +133,7 @@ class WCCD_Teacher_Gateway extends WC_Payment_Gateway {
 
 
 	/**
-	 * Tutti i prodotti dell'ordine devono essere della tipologia (cat) consentita dal buono docente.
+	 * Tutti i prodotti dell'ordine devono essere della tipologia (cat) consentita dal buono Carta del Merito.
 	 *
 	 * @param  object $order the WC order.
 	 * @param  string $bene  il bene acquistabile con il buono.
@@ -142,12 +142,12 @@ class WCCD_Teacher_Gateway extends WC_Payment_Gateway {
 	 */
 	public static function is_purchasable( $order, $bene ) {
 
-		$wccd_categories = get_option( 'wccd-categories' );
-		$cats            = self::get_purchasable_cats( $bene, $wccd_categories );
+		$wccdm_categories = get_option( 'wccdm-categories' );
+		$cats            = self::get_purchasable_cats( $bene, $wccdm_categories );
 		$items           = $order->get_items();
 		$output          = true;
 
-		if ( is_array( $cats ) && ! empty( $wccd_categories ) ) {
+		if ( is_array( $cats ) && ! empty( $wccdm_categories ) ) {
 
 			foreach ( $items as $item ) {
 				$terms = get_the_terms( $item['product_id'], 'product_cat' );
@@ -201,20 +201,20 @@ class WCCD_Teacher_Gateway extends WC_Payment_Gateway {
 
 
 	/**
-	 * Mostra il buono docente nella thankyou page, nelle mail e nella pagina dell'ordine.
+	 * Mostra il buono Carta del Merito nella thankyou page, nelle mail e nella pagina dell'ordine.
 	 *
 	 * @param  object $order the WC order.
 	 *
 	 * @return void
 	 */
-	public function display_teacher_code( $order ) {
+	public function display_code( $order ) {
 
 		$data         = $order->get_data();
-		$teacher_code = null;
+		$wccdm_code = null;
 
-		if ( 'docente' === $data['payment_method'] ) {
+		if ( 'carta-del-merito' === $data['payment_method'] ) {
 
-			echo '<p><strong>' . esc_html__( 'Buono docente', 'wccd' ) . ': </strong>' . esc_html( $order->get_meta( 'wc-codice-docente' ) ) . '</p>';
+			echo '<p><strong>' . esc_html__( 'Buono Carta del Merito', 'wccdm' ) . ': </strong>' . esc_html( $order->get_meta( 'wc-codice-carta-del-merito' ) ) . '</p>';
 
 		}
 
@@ -222,21 +222,21 @@ class WCCD_Teacher_Gateway extends WC_Payment_Gateway {
 
 
 	/**
-	 * Processa il buono docente inserito
+	 * Processa il buono Carta del Merito inserito
 	 *
 	 * @param int    $order_id     l'id dell'ordine.
-	 * @param string $teacher_code il buono docente.
+	 * @param string $wccdm_code il buono Carta del Merito.
 	 * @param float  $import       il totale dell'ordine.
 	 *
 	 * @return mixed string in caso di errore, 1 in alternativa
 	 */
-	public static function process_code( $order_id, $teacher_code, $import ) {
+	public static function process_code( $order_id, $wccdm_code, $import ) {
 
 		global $woocommerce;
 
 		$output      = 1;
 		$order       = wc_get_order( $order_id );
-		$soap_client = new WCCD_Soap_Client( $teacher_code, $import );
+		$soap_client = new WCCDM_Soap_Client( $wccdm_code, $import );
 
 		try {
 
@@ -250,7 +250,7 @@ class WCCD_Teacher_Gateway extends WC_Payment_Gateway {
 
 			if ( ! $purchasable ) {
 
-				$output = __( 'Uno o più prodotti nel carrello non sono acquistabili con il buono inserito.', 'wccd' );
+				$output = __( 'Uno o più prodotti nel carrello non sono acquistabili con il buono inserito.', 'wccdm' );
 
 			} else {
 
@@ -281,8 +281,8 @@ class WCCD_Teacher_Gateway extends WC_Payment_Gateway {
 
 						}
 
-						/*Aggiungo il buono docente all'ordine*/
-						$order->update_meta_data( 'wc-codice-docente', $teacher_code );
+						/*Aggiungo il buono Carta del Merito all'ordine*/
+						$order->update_meta_data( 'wc-codice-carta-del-merito', $wccdm_code );
 
 						/* Ordine completato */
 						$order->payment_complete();
@@ -326,11 +326,11 @@ class WCCD_Teacher_Gateway extends WC_Payment_Gateway {
 		);
 
 		$data         = $this->get_post_data();
-		$teacher_code = $data['wc-codice-docente']; // Il buono inserito dall'utente.
+		$wccdm_code = $data['wc-codice-carta-del-merito']; // Il buono inserito dall'utente.
 
-		if ( $teacher_code ) {
+		if ( $wccdm_code ) {
 
-			$notice = self::process_code( $order_id, $teacher_code, $import );
+			$notice = self::process_code( $order_id, $wccdm_code, $import );
 
 			if ( 1 === intval( $notice ) ) {
 
@@ -342,7 +342,7 @@ class WCCD_Teacher_Gateway extends WC_Payment_Gateway {
 			} else {
 
 				/* Translators: Notifica all'utente nella pagina di checkout */
-				wc_add_notice( sprintf( __( 'Buono docente - %s', 'wccd' ), $notice ), 'error' );
+				wc_add_notice( sprintf( __( 'Buono Carta del Merito - %s', 'wccdm' ), $notice ), 'error' );
 
 			}
 		}
