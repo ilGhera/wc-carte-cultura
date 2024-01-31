@@ -5,11 +5,13 @@
  * @author ilGhera
  * @package wc-carta-del-merito/includes
  *
- * @since 1.4.0
+ * @since 0.9.0
  */
 
 /**
  * WCCDM_Admin class
+ *
+ * @since 0.9.0
  */
 class WCCDM_Admin {
 

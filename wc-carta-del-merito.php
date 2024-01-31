@@ -13,6 +13,8 @@
  * WC tested up to: 8
  * Text Domain: wccdm
  * Domain Path: /languages
+ *
+ * @package wc-carta-del-merito
  */
 
 /**

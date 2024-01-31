@@ -1,6 +1,6 @@
 === WooCommerce Carta del Merito 
 Contributors: ghera74
-Tags: Woocommerce, e-commerce, shop, orders, payment, payment gateway, payment method, 
+Tags: Carta del Merito, Carte cultura, 18app, Carta del Docente, WooCommerce, payment gateway, payment method, 
 Version: 0.9.0
 Requires at least: 4.0
 Tested up to: 6.4
@@ -17,26 +17,26 @@ In fase di checkout, il buono inserito dall'utente verrà verificato per validit
 Il plugin prevede l'invio di contenuti ad un servizio esterno, in particolare i dati relativi ai prodotti acquistati dall'utente come categoria d'appartenenza e prezzo.
 
 = Indirizzo di destinazione =
-[xxxxxxxxxxxxxxxxx](xxxxxxxxxxxxxxxxxxxxxxx)
+[https://ws-cartegiovani.cultura.gov.it/WSUtilizzoVoucherGMWEB/VerificaVoucher](https://ws-cartegiovani.cultura.gov.it/WSUtilizzoVoucherGMWEB/VerificaVoucher)
 
 = Maggiori informazioni sul servizio Carta del Merito: =
-[https://cartadeldocente.istruzione.it/](https://cartadeldocente.istruzione.it/)
+[https://cartegiovani.cultura.gov.it/](https://cartegiovani.cultura.gov.it/)
 
 = Informativa privacy del servizio: =
-[xxxxxxxxxxxxxxxxx](xxxxxxxxxxxxxxxxxxxxxxx)
+[https://cartegiovani.cultura.gov.it/assets/docs/Infoprivacy_GM_Esercenti.pdf](https://cartegiovani.cultura.gov.it/assets/docs/Infoprivacy_GM_Esercenti.pdf)
 
 
 = Important notes =
 This plugin sends data to an external service, like the categories and the prices of the products bought by the user.
 
 = Service endpoint: =
-[xxxxxxxxxxxxxxxxx](xxxxxxxxxxxxxxxxxxxxxxx)
+[https://ws-cartegiovani.cultura.gov.it/WSUtilizzoVoucherGMWEB/VerificaVoucher](https://ws-cartegiovani.cultura.gov.it/WSUtilizzoVoucherGMWEB/VerificaVoucher)
 
 = Service informations: =
-[xxxxxxxxxxxxxxxxx](xxxxxxxxxxxxxxxxxxxxxxx)
+[https://cartegiovani.cultura.gov.it/](https://cartegiovani.cultura.gov.it/)
 
 = Service privacy policy: =
-[xxxxxxxxxxxxxxxxx](xxxxxxxxxxxxxxxxxxxxxxx)
+[https://cartegiovani.cultura.gov.it/assets/docs/Infoprivacy_GM_Esercenti.pdf](https://cartegiovani.cultura.gov.it/assets/docs/Infoprivacy_GM_Esercenti.pdf)
 
 
 = Funzionalità =

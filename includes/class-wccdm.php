@@ -4,11 +4,14 @@
  *
  * @author ilGhera
  * @package wc-carta-del-merito/includes
- * @since 1.3.0
+ *
+ * @since 0.9.0
  */
 
 /**
  * WCCDM class
+ *
+ * @since 0.9.0
  */
 class WCCDM {
 

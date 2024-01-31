@@ -4,7 +4,7 @@
  * @author ilGhera
  * @package wc-carta-del-merito/js
  *
- * @since 1.4.0
+ * @version 0.9.0
  */
 
 /**
