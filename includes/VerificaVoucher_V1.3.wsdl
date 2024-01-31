@@ -1,0 +1,131 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://bonus.mic.it/VerificaVoucher/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://verificavoucher.bonus.mic.it/VerificaVoucher/" name="VerificaVoucher" targetNamespace="http://bonus.mic.it/VerificaVoucher/">
+<wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://bonus.mic.it/VerificaVoucher/" targetNamespace="http://bonus.mic.it/VerificaVoucher/" version="1.0">
+<xs:element name="CheckRequestObj">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="checkReq" type="tns:Check"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="CheckResponseObj">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="checkResp" type="tns:CheckResponse"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="ConfirmRequestObj">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="checkReq" type="tns:Confirm"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="ConfirmResponseObj">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="checkResp" type="tns:ConfirmResponse"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="Check">
+<xs:sequence>
+<xs:element name="tipoOperazione" type="xs:string"/>
+<xs:element name="codiceVoucher" type="xs:string"/>
+<xs:element minOccurs="0" name="partitaIvaEsercente" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="CheckResponse">
+<xs:sequence>
+<xs:element name="nominativoBeneficiario" type="xs:string"/>
+<xs:element name="partitaIvaEsercente" type="xs:string"/>
+<xs:element name="ambito" type="xs:string"/>
+<xs:element name="bene" type="xs:string"/>
+<xs:element name="importo" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Confirm">
+<xs:sequence>
+<xs:element name="tipoOperazione" type="xs:string"/>
+<xs:element name="codiceVoucher" type="xs:string"/>
+<xs:element name="importo" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ConfirmResponse">
+<xs:sequence>
+<xs:element name="esito" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://verificavoucher.bonus.mic.it/VerificaVoucher/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://verificavoucher.bonus.mic.it/VerificaVoucher/">
+<xsd:element name="FaultVoucher" type="tns:FaultVoucher"/>
+<xsd:complexType name="FaultVoucher">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="exceptionCode" type="xsd:string"/>
+<xsd:element minOccurs="0" name="exceptionMessage" type="xsd:string"/>
+<xsd:element minOccurs="0" name="message" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:schema>
+</wsdl:types>
+<wsdl:message name="ConfirmResponse">
+<wsdl:part element="tns:ConfirmResponseObj" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="Check">
+<wsdl:part element="tns:CheckRequestObj" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="Confirm">
+<wsdl:part element="tns:ConfirmRequestObj" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="CheckResponse">
+<wsdl:part element="tns:CheckResponseObj" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="FaultVoucher">
+<wsdl:part element="ns1:FaultVoucher" name="FaultVoucher"> </wsdl:part>
+</wsdl:message>
+<wsdl:portType name="VerificaVoucher">
+<wsdl:operation name="Check">
+<wsdl:input message="tns:Check" name="Check"> </wsdl:input>
+<wsdl:output message="tns:CheckResponse" name="CheckResponse"> </wsdl:output>
+<wsdl:fault message="tns:FaultVoucher" name="FaultVoucher"> </wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="Confirm">
+<wsdl:input message="tns:Confirm" name="Confirm"> </wsdl:input>
+<wsdl:output message="tns:ConfirmResponse" name="ConfirmResponse"> </wsdl:output>
+<wsdl:fault message="tns:FaultVoucher" name="FaultVoucher"> </wsdl:fault>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="VerificaVoucherSoapBinding" type="tns:VerificaVoucher">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="Check">
+<soap:operation soapAction="http://bonus.mic.it/VerificaVoucher/Check" style="document"/>
+<wsdl:input name="Check">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="CheckResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="FaultVoucher">
+<soap:fault name="FaultVoucher" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="Confirm">
+<soap:operation soapAction="http://bonus.mic.it/VerificaVoucher/Confirm" style="document"/>
+<wsdl:input name="Confirm">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="ConfirmResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="FaultVoucher">
+<soap:fault name="FaultVoucher" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="VerificaVoucher">
+<wsdl:port binding="tns:VerificaVoucherSoapBinding" name="VerificaVoucherSOAP">
+<soap:address location="https://val.int.cartegiovani.cultura.gov.it/WSUtilizzoVoucherGMWEB/VerificaVoucher"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

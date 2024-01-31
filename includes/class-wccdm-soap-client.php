@@ -77,16 +77,16 @@ class WCCDM_Soap_Client {
 
 		if ( $this->sandbox ) {
 			$this->local_cert = WCCDM_DIR . 'demo/wccdm-demo-certificate.pem';
-			$this->location   = 'https://wstest.cartadeldocente.istruzione.it/VerificaVoucherDocWEB/VerificaVoucher';
+			$this->location   = 'https://wstestcartegiovani.cultura.gov.it/WSUtilizzoVoucherGMWEB/VerificaVoucher';
 			$this->passphrase = 'm3D0T4aM';
 
 		} else {
 			$this->local_cert = WCCDM_PRIVATE . $this->get_local_cert();
-			$this->location   = 'https://ws.cartadeldocente.istruzione.it/VerificaVoucherDocWEB/VerificaVoucher';
+			$this->location   = 'https://ws-cartegiovani.cultura.gov.it/WSUtilizzoVoucherGMWEB/VerificaVoucher';
 			$this->passphrase = $this->get_user_passphrase();
 		}
 
-		$this->wsdl           = WCCDM_INCLUDES_URI . 'VerificaVoucher.wsdl';
+		$this->wsdl           = WCCDM_INCLUDES_URI . 'VerificaVoucher_V1.3.wsdl';
 		$this->codice_voucher = $codice_voucher;
 		$this->import         = $import;
 
