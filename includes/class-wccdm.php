@@ -50,9 +50,9 @@ class WCCDM {
 	 *
 	 * @return array
 	 */
-	public function wccdmm_add_gateway_class( $methods ) {
+	public function wccdm_add_gateway_class( $methods ) {
 
-		$sandbox = get_option( 'wccdmm-sandbox' );
+		$sandbox = get_option( 'wccdm-sandbox' );
 
 		if ( $sandbox || ( WCCDM_Admin::get_the_file( '.pem' ) && get_option( 'wccdm-cert-activation' ) ) ) {
 
