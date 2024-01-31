@@ -1,17 +1,17 @@
 /**
- * WC Carta Docente - CSS
+ * WC Carta del Merito - CSS
  * @author ilGhera
- * @package wc-carta-docente/css
+ * @package wc-carta-del-merito/css
  * @version 0.9.2
  */
 
-input#wc-codice-docente {
+input#wc-codice-carta-del-merito {
 	display: block;
 	margin-top: 0.5rem;
 	width: 100%;
 }
 
-label[for="wc-codice-docente"] {
+label[for="wc-codice-carta-del-merito"] {
 	text-transform: uppercase;
 	display: block;
 }

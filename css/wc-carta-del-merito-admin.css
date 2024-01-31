@@ -1,11 +1,11 @@
 /**
- * WC Carta Docente - Admin CSS
+ * WC Carta del Merito - Admin CSS
  * @author ilGhera
- * @package wc-carta-docente/css
+ * @package wc-carta-del-merito/css
  * @version 1.3.0
  */
 
-#wccd-admin-menu {
+#wccdm-admin-menu {
 	margin: 1rem 0 2rem;
 }
 
@@ -44,7 +44,7 @@ ul.categories-container {
 	margin: 0;
 }
 
-.wccd-field {
+.wccdm-field {
 	width: 260px;
 	margin-right: 0.5rem;
 }
@@ -72,7 +72,7 @@ ul.categories-container {
 	display: inline;
 }
 
-.wccd-form, .wccd-table {
+.wccdm-form, .wccdm-table {
 	margin-top: 2rem;
 }
 
@@ -81,11 +81,11 @@ ul.categories-container {
 	border-bottom: 1px solid #ccc;
 }
 
-.wccd-button {
+.wccdm-button {
 	margin-top: 1rem !important;
 }
 
-.wccd-admin {
+.wccdm-admin {
 	display: none;
 }
 
@@ -124,7 +124,7 @@ ul.categories-container {
     margin: 1rem 0;
 }
 
-.wccd-email-details {
+.wccdm-email-details {
     display: none;
 }
 
@@ -132,13 +132,13 @@ ul.categories-container {
     display: block;
 }
 
-.wccd-divider {
+.wccdm-divider {
     padding-bottom: 2rem;
     margin: 2rem 0;
     border-bottom: 1px solid #ccc;
 }
 
-span.wccd-alert {
+span.wccdm-alert {
 	display: block;
 	margin: 1rem 0 0;
 	padding: 0.6rem;
