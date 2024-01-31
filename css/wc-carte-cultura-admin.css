@@ -1,13 +1,13 @@
 /**
- * WC Carta del Merito - Admin CSS
+ * WC Carte Cultura - Admin CSS
  *
  * @author ilGhera
- * @package wc-carta-del-merito/css
+ * @package wc-carte-cultura/css
  *
  * @version 0.9.0
  */
 
-#wccdm-admin-menu {
+#wccc-admin-menu {
 	margin: 1rem 0 2rem;
 }
 
@@ -46,7 +46,7 @@ ul.categories-container {
 	margin: 0;
 }
 
-.wccdm-field {
+.wccc-field {
 	width: 260px;
 	margin-right: 0.5rem;
 }
@@ -74,7 +74,7 @@ ul.categories-container {
 	display: inline;
 }
 
-.wccdm-form, .wccdm-table {
+.wccc-form, .wccc-table {
 	margin-top: 2rem;
 }
 
@@ -83,11 +83,11 @@ ul.categories-container {
 	border-bottom: 1px solid #ccc;
 }
 
-.wccdm-button {
+.wccc-button {
 	margin-top: 1rem !important;
 }
 
-.wccdm-admin {
+.wccc-admin {
 	display: none;
 }
 
@@ -126,7 +126,7 @@ ul.categories-container {
     margin: 1rem 0;
 }
 
-.wccdm-email-details {
+.wccc-email-details {
     display: none;
 }
 
@@ -134,13 +134,13 @@ ul.categories-container {
     display: block;
 }
 
-.wccdm-divider {
+.wccc-divider {
     padding-bottom: 2rem;
     margin: 2rem 0;
     border-bottom: 1px solid #ccc;
 }
 
-span.wccdm-alert {
+span.wccc-alert {
 	display: block;
 	margin: 1rem 0 0;
 	padding: 0.6rem;

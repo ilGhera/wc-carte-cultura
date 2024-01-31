@@ -1,15 +1,15 @@
-=== WooCommerce Carta del Merito ===
+=== WooCommerce Carte Cultura ===
 Contributors: ghera74
-Tags: Carta del Merito, Carte cultura, 18app, Carta del Docente, WooCommerce, payment gateway, payment method, 
+Tags: Carte Cultura, Carta della Cultura Giovane, Carta del Merito, 18app, Carta del Docente, WooCommerce 
 Version: 0.9.0
 Requires at least: 4.0
 Tested up to: 6.4
 
-Abilita in WooCommerce il pagamento con Carta del Merito.
+Abilita in WooCommerce il pagamento con Carte Cultura.
 
 == Description ==
 
-Il plugin consente di abilitare sul proprio store il pagamento con Carta del Merito.
+Il plugin consente di abilitare sul proprio store il pagamento con Carte Cultura.
 In fase di checkout, il buono inserito dall'utente verrà verificato per validità, credito disponibile e pertinenza in termini di tipologia di prodotto.
 
 
@@ -19,7 +19,7 @@ Il plugin prevede l'invio di contenuti ad un servizio esterno, in particolare i 
 = Indirizzo di destinazione =
 [https://ws-cartegiovani.cultura.gov.it/WSUtilizzoVoucherGMWEB/VerificaVoucher](https://ws-cartegiovani.cultura.gov.it/WSUtilizzoVoucherGMWEB/VerificaVoucher)
 
-= Maggiori informazioni sul servizio Carta del Merito: =
+= Maggiori informazioni sul servizio Carte Cultura: =
 [https://cartegiovani.cultura.gov.it/](https://cartegiovani.cultura.gov.it/)
 
 = Informativa privacy del servizio: =
@@ -52,16 +52,16 @@ This plugin sends data to an external service, like the categories and the price
 = Dalla Bacheca di Wordpress =
 
 * Vai in  Plugin > Aggiungi nuovo.
-* Cerca WooCommerce Carta del Merito e scaricalo.
-* Attiva Woocommerce Carta del Merito dalla pagina dei Plugin.
-* Una volta attivato, vai in <strong>WooCommerce/ WC Carta del Merito</strong> e imposta le tue preferenze.
+* Cerca WooCommerce Carte Cultura e scaricalo.
+* Attiva Woocommerce Carte Cultura dalla pagina dei Plugin.
+* Una volta attivato, vai in <strong>WooCommerce/ WC Carte Cultura</strong> e imposta le tue preferenze.
 
 = Da WordPress.org =
 
-* Scarica WooCommerce Carta del Merito
-* Carica la cartella wc-carta-del-merito su /wp-content/plugins/ utilizzando il tuo metodo preferito (ftp, sftp, scp, ecc...)
-* Attiva WooCommerce Carta del Merito dalla pagina dei Plugin.
-* Una volta attivato, vai in <strong>WooCommerce/ WC Carta del Merito</strong> e imposta le tue preferenze.
+* Scarica WooCommerce Carte Cultura
+* Carica la cartella wc-carte-cultura su /wp-content/plugins/ utilizzando il tuo metodo preferito (ftp, sftp, scp, ecc...)
+* Attiva WooCommerce Carte Cultura dalla pagina dei Plugin.
+* Una volta attivato, vai in <strong>WooCommerce/ WC Carte Cultura</strong> e imposta le tue preferenze.
 
 
 == Screenshots ==

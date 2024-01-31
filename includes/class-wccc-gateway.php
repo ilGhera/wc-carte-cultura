@@ -1,19 +1,19 @@
 <?php
 /**
- * Estende la classe WC_Payment_Gateway di WooCommerce aggiungendo il nuovo gateway Carta del Merito
+ * Estende la classe WC_Payment_Gateway di WooCommerce aggiungendo il nuovo gateway Carte Cultura
  *
  * @author ilGhera
- * @package wc-carta-del-merito/includes
+ * @package wc-carte-cultura/includes
  *
  * @since 0.9.0
  */
 
 /**
- * WCCDM_Gateway class
+ * WCCC_Gateway class
  *
  * @since 0.9.0
  */
-class WCCDM_Gateway extends WC_Payment_Gateway {
+class WCCC_Gateway extends WC_Payment_Gateway {
 
 	/**
 	 * The constructor
@@ -22,15 +22,15 @@ class WCCDM_Gateway extends WC_Payment_Gateway {
 	 */
 	public function __construct() {
 
-		$this->plugin_id          = 'woocommerce_carta_del_merito';
-		$this->id                 = 'carta-del-merito';
+		$this->plugin_id          = 'woocommerce_carte_cultura';
+		$this->id                 = 'carte-cultura';
 		$this->has_fields         = true;
-		$this->method_title       = __( 'Buono Carta del Merito', 'wccdm' );
-		$this->method_description = __( 'Consente ai diciottenni di utilizzare il buono a loro riservato per l\'acquisto di materiale didattico.', 'wccdm' );
+		$this->method_title       = __( 'Buono Carte Cultura', 'wccc' );
+		$this->method_description = __( 'Consente ai diciottenni di utilizzare il buono a loro riservato per l\'acquisto di materiale didattico.', 'wccc' );
 
-		if ( get_option( 'wccdm-image' ) ) {
+		if ( get_option( 'wccc-image' ) ) {
 
-			$this->icon = WCCDM_URI . 'images/carta-del-merito.png';
+			$this->icon = WCCC_URI . 'images/carte-cultura.png';
 
 		}
 
@@ -60,14 +60,14 @@ class WCCDM_Gateway extends WC_Payment_Gateway {
 				'enabled'     => array(
 					'title'   => __( 'Enable/Disable', 'woocommerce' ),
 					'type'    => 'checkbox',
-					'label'   => __( 'Abilita pagamento con buono Carta del Merito', 'wccdm' ),
+					'label'   => __( 'Abilita pagamento con buono Carte Cultura', 'wccc' ),
 					'default' => 'yes',
 				),
 				'title'       => array(
 					'title'       => __( 'Title', 'woocommerce' ),
 					'type'        => 'text',
-					'description' => __( 'This controls the title which the user sees during checkout.', 'wccdm' ),
-					'default'     => __( 'Carta del Merito', 'wccdm' ),
+					'description' => __( 'This controls the title which the user sees during checkout.', 'wccc' ),
+					'default'     => __( 'Carte Cultura', 'wccc' ),
 					'desc_tip'    => true,
 				),
 				'description' => array(
@@ -88,11 +88,11 @@ class WCCDM_Gateway extends WC_Payment_Gateway {
 		?>
 		<p>
 			<?php echo wp_kses_post( $this->description ); ?>
-			<label for="wc-codice-carta-del-merito">
-				<?php esc_html_e( 'Inserisci qui il tuo codice', 'wccdm' ); ?>
+			<label for="wc-codice-carte-cultura">
+				<?php esc_html_e( 'Inserisci qui il tuo codice', 'wccc' ); ?>
 				<span class="required">*</span>
 			</label>
-			<input type="text" class="wc-codice-carta-del-merito" id="wc-codice-carta-del-merito" name="wc-codice-carta-del-merito" />
+			<input type="text" class="wc-codice-carte-cultura" id="wc-codice-carte-cultura" name="wc-codice-carte-cultura" />
 		</p>
 		<?php
 	}
@@ -108,21 +108,21 @@ class WCCDM_Gateway extends WC_Payment_Gateway {
 	 */
 	public static function get_purchasable_cats( $purchasable, $categories = null ) {
 
-		$wccdm_categories = is_array( $categories ) ? $categories : get_option( 'wccdm-categories' );
+		$wccc_categories = is_array( $categories ) ? $categories : get_option( 'wccc-categories' );
 
-		if ( $wccdm_categories ) {
+		if ( $wccc_categories ) {
 
 			$purchasable      = str_replace( '(', '', $purchasable );
 			$purchasable      = str_replace( ')', '', $purchasable );
 			$bene             = strtolower( str_replace( ' ', '-', $purchasable ) );
 			$output           = array();
-			$count_categories = count( $wccdm_categories );
+			$count_categories = count( $wccc_categories );
 
 			for ( $i = 0; $i < $count_categories; $i++ ) {
 
-				if ( array_key_exists( $bene, $wccdm_categories[ $i ] ) ) {
+				if ( array_key_exists( $bene, $wccc_categories[ $i ] ) ) {
 
-					$output[] = $wccdm_categories[ $i ][ $bene ];
+					$output[] = $wccc_categories[ $i ][ $bene ];
 
 				}
 			}
@@ -135,7 +135,7 @@ class WCCDM_Gateway extends WC_Payment_Gateway {
 
 
 	/**
-	 * Tutti i prodotti dell'ordine devono essere della tipologia (cat) consentita dal buono Carta del Merito.
+	 * Tutti i prodotti dell'ordine devono essere della tipologia (cat) consentita dal buono Carte Cultura.
 	 *
 	 * @param  object $order the WC order.
 	 * @param  string $bene  il bene acquistabile con il buono.
@@ -144,12 +144,12 @@ class WCCDM_Gateway extends WC_Payment_Gateway {
 	 */
 	public static function is_purchasable( $order, $bene ) {
 
-		$wccdm_categories = get_option( 'wccdm-categories' );
-		$cats            = self::get_purchasable_cats( $bene, $wccdm_categories );
+		$wccc_categories = get_option( 'wccc-categories' );
+		$cats            = self::get_purchasable_cats( $bene, $wccc_categories );
 		$items           = $order->get_items();
 		$output          = true;
 
-		if ( is_array( $cats ) && ! empty( $wccdm_categories ) ) {
+		if ( is_array( $cats ) && ! empty( $wccc_categories ) ) {
 
 			foreach ( $items as $item ) {
 				$terms = get_the_terms( $item['product_id'], 'product_cat' );
@@ -203,7 +203,7 @@ class WCCDM_Gateway extends WC_Payment_Gateway {
 
 
 	/**
-	 * Mostra il buono Carta del Merito nella thankyou page, nelle mail e nella pagina dell'ordine.
+	 * Mostra il buono Carte Cultura nella thankyou page, nelle mail e nella pagina dell'ordine.
 	 *
 	 * @param  object $order the WC order.
 	 *
@@ -212,11 +212,11 @@ class WCCDM_Gateway extends WC_Payment_Gateway {
 	public function display_code( $order ) {
 
 		$data         = $order->get_data();
-		$wccdm_code = null;
+		$wccc_code = null;
 
-		if ( 'carta-del-merito' === $data['payment_method'] ) {
+		if ( 'carte-cultura' === $data['payment_method'] ) {
 
-			echo '<p><strong>' . esc_html__( 'Buono Carta del Merito', 'wccdm' ) . ': </strong>' . esc_html( $order->get_meta( 'wc-codice-carta-del-merito' ) ) . '</p>';
+			echo '<p><strong>' . esc_html__( 'Buono Carte Cultura', 'wccc' ) . ': </strong>' . esc_html( $order->get_meta( 'wc-codice-carte-cultura' ) ) . '</p>';
 
 		}
 
@@ -224,21 +224,21 @@ class WCCDM_Gateway extends WC_Payment_Gateway {
 
 
 	/**
-	 * Processa il buono Carta del Merito inserito
+	 * Processa il buono Carte Cultura inserito
 	 *
 	 * @param int    $order_id     l'id dell'ordine.
-	 * @param string $wccdm_code il buono Carta del Merito.
+	 * @param string $wccc_code il buono Carte Cultura.
 	 * @param float  $import       il totale dell'ordine.
 	 *
 	 * @return mixed string in caso di errore, 1 in alternativa
 	 */
-	public static function process_code( $order_id, $wccdm_code, $import ) {
+	public static function process_code( $order_id, $wccc_code, $import ) {
 
 		global $woocommerce;
 
 		$output      = 1;
 		$order       = wc_get_order( $order_id );
-		$soap_client = new WCCDM_Soap_Client( $wccdm_code, $import );
+		$soap_client = new WCCC_Soap_Client( $wccc_code, $import );
 
 		try {
 
@@ -252,7 +252,7 @@ class WCCDM_Gateway extends WC_Payment_Gateway {
 
 			if ( ! $purchasable ) {
 
-				$output = __( 'Uno o più prodotti nel carrello non sono acquistabili con il buono inserito.', 'wccdm' );
+				$output = __( 'Uno o più prodotti nel carrello non sono acquistabili con il buono inserito.', 'wccc' );
 
 			} else {
 
@@ -283,8 +283,8 @@ class WCCDM_Gateway extends WC_Payment_Gateway {
 
 						}
 
-						/*Aggiungo il buono Carta del Merito all'ordine*/
-						$order->update_meta_data( 'wc-codice-carta-del-merito', $wccdm_code );
+						/*Aggiungo il buono Carte Cultura all'ordine*/
+						$order->update_meta_data( 'wc-codice-carte-cultura', $wccc_code );
 
 						/* Ordine completato */
 						$order->payment_complete();
@@ -328,11 +328,11 @@ class WCCDM_Gateway extends WC_Payment_Gateway {
 		);
 
 		$data         = $this->get_post_data();
-		$wccdm_code = $data['wc-codice-carta-del-merito']; // Il buono inserito dall'utente.
+		$wccc_code = $data['wc-codice-carte-cultura']; // Il buono inserito dall'utente.
 
-		if ( $wccdm_code ) {
+		if ( $wccc_code ) {
 
-			$notice = self::process_code( $order_id, $wccdm_code, $import );
+			$notice = self::process_code( $order_id, $wccc_code, $import );
 
 			if ( 1 === intval( $notice ) ) {
 
@@ -344,7 +344,7 @@ class WCCDM_Gateway extends WC_Payment_Gateway {
 			} else {
 
 				/* Translators: Notifica all'utente nella pagina di checkout */
-				wc_add_notice( sprintf( __( 'Buono Carta del Merito - %s', 'wccdm' ), $notice ), 'error' );
+				wc_add_notice( sprintf( __( 'Buono Carte Cultura - %s', 'wccc' ), $notice ), 'error' );
 
 			}
 		}

@@ -3,17 +3,17 @@
  * Gestice le chiamate del web service
  *
  * @author ilGhera
- * @package wc-carta-del-merito/includes
+ * @package wc-carte-cultura/includes
  *
  * @since 0.9.0
  */
 
 /**
- * WCCDM_Soap_Client class
+ * WCCC_Soap_Client class
  *
  * @since 0.9.0
  */
-class WCCDM_Soap_Client {
+class WCCC_Soap_Client {
 
 	/**
 	 * Opzione sandbox
@@ -44,14 +44,14 @@ class WCCDM_Soap_Client {
 	public $passphrase;
 
 	/**
-	 * Il file WSDL previsto da Carta del Merito
+	 * Il file WSDL previsto da Carte Cultura
 	 *
 	 * @var string
 	 */
 	public $wsdl;
 
 	/**
-	 * Il buono Carta del Merito
+	 * Il buono Carte Cultura
 	 *
 	 * @var string
 	 */
@@ -68,27 +68,27 @@ class WCCDM_Soap_Client {
 	/**
 	 * The constructor
 	 *
-	 * @param string $codice_voucher il codice Carta del Merito.
+	 * @param string $codice_voucher il codice Carte Cultura.
 	 * @param float  $import         il valore del buono.
 	 *
 	 * @return void
 	 */
 	public function __construct( $codice_voucher, $import ) {
 
-		$this->sandbox = get_option( 'wccdm-sandbox' );
+		$this->sandbox = get_option( 'wccc-sandbox' );
 
 		if ( $this->sandbox ) {
-			$this->local_cert = WCCDM_DIR . 'demo/wccdm-demo-certificate.pem';
+			$this->local_cert = WCCC_DIR . 'demo/wccc-demo-certificate.pem';
 			$this->location   = 'https://wstest-cartegiovani.cultura.gov.it/WSUtilizzoVoucherGMWEB/VerificaVoucher';
 			$this->passphrase = 'm3D0T4aM';
 
 		} else {
-			$this->local_cert = WCCDM_PRIVATE . $this->get_local_cert();
+			$this->local_cert = WCCC_PRIVATE . $this->get_local_cert();
 			$this->location   = 'https://ws-cartegiovani.cultura.gov.it/WSUtilizzoVoucherGMWEB/VerificaVoucher';
 			$this->passphrase = $this->get_user_passphrase();
 		}
 
-		$this->wsdl           = WCCDM_INCLUDES_URI . 'VerificaVoucher_V1.3.wsdl';
+		$this->wsdl           = WCCC_INCLUDES_URI . 'VerificaVoucher_V1.3.wsdl';
 		$this->codice_voucher = $codice_voucher;
 		$this->import         = $import;
 
@@ -101,7 +101,7 @@ class WCCDM_Soap_Client {
 	 * @return string
 	 */
 	public function get_local_cert() {
-		$cert = WCCDM_Admin::get_the_file( '.pem' );
+		$cert = WCCC_Admin::get_the_file( '.pem' );
 		if ( $cert ) {
 			return esc_html( basename( $cert ) );
 		}
@@ -114,7 +114,7 @@ class WCCDM_Soap_Client {
 	 * @return string
 	 */
 	public function get_user_passphrase() {
-		return base64_decode( get_option( 'wccdm-password' ) );
+		return base64_decode( get_option( 'wccc-password' ) );
 	}
 
 

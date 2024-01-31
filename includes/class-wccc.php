@@ -1,19 +1,19 @@
 <?php
 /**
- * Class WCCDM
+ * Class WCCC
  *
  * @author ilGhera
- * @package wc-carta-del-merito/includes
+ * @package wc-carte-cultura/includes
  *
  * @since 0.9.0
  */
 
 /**
- * WCCDM class
+ * WCCC class
  *
  * @since 0.9.0
  */
-class WCCDM {
+class WCCC {
 
 	/**
 	 * The constructor
@@ -23,7 +23,7 @@ class WCCDM {
 	public function __construct() {
 
 		/* Filters */
-		add_filter( 'woocommerce_payment_gateways', array( $this, 'wccdm_add_gateway_class' ) );
+		add_filter( 'woocommerce_payment_gateways', array( $this, 'wccc_add_gateway_class' ) );
 
 	}
 
@@ -53,13 +53,13 @@ class WCCDM {
 	 *
 	 * @return array
 	 */
-	public function wccdm_add_gateway_class( $methods ) {
+	public function wccc_add_gateway_class( $methods ) {
 
-		$sandbox = get_option( 'wccdm-sandbox' );
+		$sandbox = get_option( 'wccc-sandbox' );
 
-		if ( $sandbox || ( WCCDM_Admin::get_the_file( '.pem' ) && get_option( 'wccdm-cert-activation' ) ) ) {
+		if ( $sandbox || ( WCCC_Admin::get_the_file( '.pem' ) && get_option( 'wccc-cert-activation' ) ) ) {
 
-			$methods[] = 'WCCDM_Gateway';
+			$methods[] = 'WCCC_Gateway';
 
 		}
 
@@ -69,5 +69,5 @@ class WCCDM {
 
 }
 
-new WCCDM();
+new WCCC();
 

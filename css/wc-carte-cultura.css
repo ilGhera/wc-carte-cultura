@@ -1,19 +1,19 @@
 /**
- * WC Carta del Merito - CSS
+ * WC Carte Cultura - CSS
  *
  * @author ilGhera
- * @package wc-carta-del-merito/css
+ * @package wc-carte-cultura/css
  *
  * @version 0.9.0
  */
 
-input#wc-codice-carta-del-merito {
+input#wc-codice-carte-cultura {
 	display: block;
 	margin-top: 0.5rem;
 	width: 100%;
 }
 
-label[for="wc-codice-carta-del-merito"] {
+label[for="wc-codice-carte-cultura"] {
 	text-transform: uppercase;
 	display: block;
 }
