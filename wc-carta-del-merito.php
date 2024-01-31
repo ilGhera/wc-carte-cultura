@@ -1,24 +1,24 @@
 <?php
 /**
- * Plugin name: WooCommerce Carta Docente
- * Plugin URI: https://www.ilghera.com/product/wc-carta-docente/
- * Description: Abilita in WooCommerce il pagamento con Carta del Docente prevista dallo stato Italiano.
+ * Plugin name: WooCommerce Carta del Merito 
+ * Plugin URI: https://www.ilghera.com/product/wc-carta-del-merito/
+ * Description: Abilita in WooCommerce il pagamento con Carta del Merito prevista dallo stato Italiano.
  * Author: ilGhera
  *
- * @package wc-carta-docente
- * Version: 1.4.0
+ * @package wc-carta-del-merito
+ * Version: 0.9.0
  * Author URI: https://ilghera.com
  * Requires at least: 4.0
  * Tested up to: 6.4
  * WC tested up to: 8
- * Text Domain: wccd
+ * Text Domain: wccdm
  * Domain Path: /languages
  */
 
 /**
  * Attivazione
  */
-function wccd_activation() {
+function wccdm_activation() {
 
 	/*Is WooCommerce activated?*/
 	if ( ! class_exists( 'WC_Payment_Gateway' ) ) {
@@ -26,34 +26,34 @@ function wccd_activation() {
 	}
 
 	/*Definizione costanti*/
-	define( 'WCCD_DIR', plugin_dir_path( __FILE__ ) );
-	define( 'WCCD_URI', plugin_dir_url( __FILE__ ) );
-	define( 'WCCD_INCLUDES', WCCD_DIR . 'includes/' );
-	define( 'WCCD_INCLUDES_URI', WCCD_URI . 'includes/' );
-	define( 'WCCD_VERSION', '1.4.0' );
+	define( 'WCCDM_DIR', plugin_dir_path( __FILE__ ) );
+	define( 'WCCDM_URI', plugin_dir_url( __FILE__ ) );
+	define( 'WCCDM_INCLUDES', WCCDM_DIR . 'includes/' );
+	define( 'WCCDM_INCLUDES_URI', WCCDM_URI . 'includes/' );
+	define( 'WCCDM_VERSION', '0.9.0' );
 
 	/*Main directory di upload*/
 	$wp_upload_dir = wp_upload_dir();
 
-	/*Creo se necessario la cartella wccd-private*/
-	if ( wp_mkdir_p( trailingslashit( $wp_upload_dir['basedir'] . '/wccd-private/files/backups' ) ) ) {
-		define( 'WCCD_PRIVATE', $wp_upload_dir['basedir'] . '/wccd-private/' );
-		define( 'WCCD_PRIVATE_URI', $wp_upload_dir['baseurl'] . '/wccd-private/' );
+	/*Creo se necessario la cartella wccdm-private*/
+	if ( wp_mkdir_p( trailingslashit( $wp_upload_dir['basedir'] . '/wccdm-private/files/backups' ) ) ) {
+		define( 'WCCDM_PRIVATE', $wp_upload_dir['basedir'] . '/wccdm-private/' );
+		define( 'WCCDM_PRIVATE_URI', $wp_upload_dir['baseurl'] . '/wccdm-private/' );
 	}
 
 	/*Requires*/
-	require WCCD_INCLUDES . 'class-wccd-teacher-gateway.php';
-	require WCCD_INCLUDES . 'class-wccd-soap-client.php';
-	require WCCD_INCLUDES . 'class-wccd-admin.php';
-	require WCCD_INCLUDES . 'class-wccd.php';
+	require WCCDM_INCLUDES . 'class-wccdm-gateway.php';
+	require WCCDM_INCLUDES . 'class-wccdm-soap-client.php';
+	require WCCDM_INCLUDES . 'class-wccdm-admin.php';
+	require WCCDM_INCLUDES . 'class-wccdm.php';
 
 	/**
 	 * Script e folgi di stile front-end
 	 *
 	 * @return void
 	 */
-	function wccd_load_scripts() {
-		wp_enqueue_style( 'wccd-style', WCCD_URI . 'css/wc-carta-docente.css', array(), WCCD_VERSION );
+	function wccdm_load_scripts() {
+		wp_enqueue_style( 'wccdm-style', WCCDM_URI . 'css/wc-carta-del-merito.css', array(), WCCDM_VERSION );
 	}
 
 	/**
@@ -61,22 +61,22 @@ function wccd_activation() {
 	 *
 	 * @return void
 	 */
-	function wccd_load_admin_scripts() {
+	function wccdm_load_admin_scripts() {
 
 		$admin_page = get_current_screen();
 
-		if ( isset( $admin_page->base ) && 'woocommerce_page_wccd-settings' === $admin_page->base ) {
+		if ( isset( $admin_page->base ) && 'woocommerce_page_wccdm-settings' === $admin_page->base ) {
 
-			wp_enqueue_style( 'wccd-admin-style', WCCD_URI . 'css/wc-carta-docente-admin.css', array(), WCCD_VERSION );
-			wp_enqueue_script( 'wccd-admin-scripts', WCCD_URI . 'js/wc-carta-docente-admin.js', array(), WCCD_VERSION, false );
+			wp_enqueue_style( 'wccdm-admin-style', WCCDM_URI . 'css/wc-carta-del-merito-admin.css', array(), WCCDM_VERSION );
+			wp_enqueue_script( 'wccdm-admin-scripts', WCCDM_URI . 'js/wc-carta-del-merito-admin.js', array(), WCCDM_VERSION, false );
 
 			/* Nonce per l'eliminazione del certificato */
-			$delete_nonce  = wp_create_nonce( 'wccd-del-cert-nonce' );
-			$add_cat_nonce = wp_create_nonce( 'wccd-add-cat-nonce' );
+			$delete_nonce  = wp_create_nonce( 'wccdm-del-cert-nonce' );
+			$add_cat_nonce = wp_create_nonce( 'wccdm-add-cat-nonce' );
 
 			wp_localize_script(
-				'wccd-admin-scripts',
-				'wccdData',
+				'wccdm-admin-scripts',
+				'wccdmData',
 				array(
 					'delCertNonce' => $delete_nonce,
 					'addCatNonce'  => $add_cat_nonce,
@@ -84,19 +84,19 @@ function wccd_activation() {
 			);
 
 			/*tzCheckBox*/
-			wp_enqueue_style( 'tzcheckbox-style', WCCD_URI . 'js/tzCheckbox/jquery.tzCheckbox/jquery.tzCheckbox.css', array(), WCCD_VERSION );
-			wp_enqueue_script( 'tzcheckbox', WCCD_URI . 'js/tzCheckbox/jquery.tzCheckbox/jquery.tzCheckbox.js', array( 'jquery' ), WCCD_VERSION, false );
-			wp_enqueue_script( 'tzcheckbox-script', WCCD_URI . 'js/tzCheckbox/js/script.js', array( 'jquery' ), WCCD_VERSION, false );
+			wp_enqueue_style( 'tzcheckbox-style', WCCDM_URI . 'js/tzCheckbox/jquery.tzCheckbox/jquery.tzCheckbox.css', array(), WCCDM_VERSION );
+			wp_enqueue_script( 'tzcheckbox', WCCDM_URI . 'js/tzCheckbox/jquery.tzCheckbox/jquery.tzCheckbox.js', array( 'jquery' ), WCCDM_VERSION, false );
+			wp_enqueue_script( 'tzcheckbox-script', WCCDM_URI . 'js/tzCheckbox/js/script.js', array( 'jquery' ), WCCDM_VERSION, false );
 
 		}
 
 	}
 
 	/*Script e folgi di stile*/
-	add_action( 'wp_enqueue_scripts', 'wccd_load_scripts' );
-	add_action( 'admin_enqueue_scripts', 'wccd_load_admin_scripts' );
+	add_action( 'wp_enqueue_scripts', 'wccdm_load_scripts' );
+	add_action( 'admin_enqueue_scripts', 'wccdm_load_admin_scripts' );
 }
-add_action( 'plugins_loaded', 'wccd_activation', 100 );
+add_action( 'plugins_loaded', 'wccdm_activation', 100 );
 
 /**
  * HPOS compatibility
