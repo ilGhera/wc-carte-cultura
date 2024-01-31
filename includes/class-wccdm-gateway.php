@@ -65,7 +65,7 @@ class WCCDM_Gateway extends WC_Payment_Gateway {
 					'title'       => __( 'Title', 'woocommerce' ),
 					'type'        => 'text',
 					'description' => __( 'This controls the title which the user sees during checkout.', 'wccdm' ),
-					'default'     => __( 'Buono Carta del Merito', 'wccdm' ),
+					'default'     => __( 'Carta del Merito', 'wccdm' ),
 					'desc_tip'    => true,
 				),
 				'description' => array(
