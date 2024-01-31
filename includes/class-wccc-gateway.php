@@ -25,7 +25,7 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 		$this->plugin_id          = 'woocommerce_carte_cultura';
 		$this->id                 = 'carte-cultura';
 		$this->has_fields         = true;
-		$this->method_title       = __( 'Buono Carte Cultura', 'wccc' );
+		$this->method_title       = __( 'Carte Cultura', 'wccc' );
 		$this->method_description = __( 'Consente ai diciottenni di utilizzare buoni Carta Cultura Giovani e Carta del Merito per l\'acquisto di materiale didattico.', 'wccc' );
 
 		if ( get_option( 'wccc-image' ) ) {
