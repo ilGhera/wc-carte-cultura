@@ -1,4 +1,4 @@
-=== WooCommerce Carta del Merito 
+=== WooCommerce Carta del Merito ===
 Contributors: ghera74
 Tags: Carta del Merito, Carte cultura, 18app, Carta del Docente, WooCommerce, payment gateway, payment method, 
 Version: 0.9.0
