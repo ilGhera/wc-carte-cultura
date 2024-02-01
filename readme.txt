@@ -1,9 +1,11 @@
-=== WooCommerce Carte Cultura ===
+=== WC Carte Cultura ===
 Contributors: ghera74
 Tags: Carte Cultura, Carta della Cultura Giovane, Carta del Merito, 18app, Carta del Docente, WooCommerce 
 Version: 0.9.0
 Requires at least: 4.0
 Tested up to: 6.4
+License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Abilita in WooCommerce il pagamento con Carte Cultura.
 
@@ -75,6 +77,6 @@ This plugin sends data to an external service, like the categories and the price
 
 
 = 0.9.0 =
-Data di rilascio: 2 Luglio, 2018
+Data di rilascio: 1 Febbraio, 2024
 
     * Prima release.
