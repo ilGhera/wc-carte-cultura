@@ -1,11 +1,10 @@
 <?php
 /**
- * Plugin name: WooCommerce Carte Cultura 
+ * Plugin name: WooCommerce Carte Cultura
  * Plugin URI: https://www.ilghera.com/product/wc-carte-cultura/
  * Description: Abilita in WooCommerce il pagamento con Carte Cultura prevista dallo stato Italiano.
  * Author: ilGhera
  *
- * @package wc-carte-cultura
  * Version: 0.9.0
  * Author URI: https://ilghera.com
  * Requires at least: 4.0
