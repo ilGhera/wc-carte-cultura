@@ -60,7 +60,7 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 				'enabled'     => array(
 					'title'   => __( 'Enable/Disable', 'woocommerce' ),
 					'type'    => 'checkbox',
-					'label'   => __( 'Abilita pagamento con buono Carte Cultura', 'wccc' ),
+					'label'   => __( 'Abilita pagamento con Carte Cultura', 'wccc' ),
 					'default' => 'yes',
 				),
 				'title'       => array(
@@ -327,8 +327,8 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 			'redirect' => '',
 		);
 
-		$data      = $order->get_data();
-		$wccc_code = $data['wc-codice-carte-cultura']; // Il buono inserito dall'utente.
+		$data      = $this->get_post_data();
+		$wccc_code = isset( $data['wc-codice-carte-cultura'] ) ? $data['wc-codice-carte-cultura'] : null; // Il buono inserito dall'utente.
 
 		if ( $wccc_code ) {
 
