@@ -11,7 +11,7 @@ Abilita in WooCommerce il pagamento con Carte Cultura.
 
 == Description ==
 
-Il plugin consente di abilitare sul proprio store il pagamento con Carte Cultura.
+Il plugin consente di abilitare sul proprio store il pagamento con Carta della Cultura Giovane e Carta del Merito.
 In fase di checkout, il buono inserito dall'utente verrà verificato per validità, credito disponibile e pertinenza in termini di tipologia di prodotto.
 
 
