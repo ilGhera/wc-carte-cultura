@@ -2,11 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WC Carte Cultura 0.9.0\n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2024-01-31 23:46+0100\n"
-=======
-"POT-Creation-Date: 2024-02-01 15:43+0100\n"
->>>>>>> 31839b3 (Cambio stringhe di testo in admin)
+"POT-Creation-Date: 2024-02-01 16:25+0100\n"
 "PO-Revision-Date: 2018-07-02 12:47+0200\n"
 "Last-Translator: \n"
 "Language-Team: ilGhera\n"
@@ -28,64 +24,26 @@ msgstr ""
 msgid "WC Carte Cultura"
 msgstr ""
 
-#: includes/class-wccc-admin.php:293
-msgid "Impostazioni"
-msgstr ""
-
-<<<<<<< HEAD
-#: includes/class-wccc-admin.php:298
-msgid "Certificato"
-msgstr ""
-
-#: includes/class-wccc-admin.php:370
-msgid "Richiedi un certificato"
-msgstr ""
-
-#: includes/class-wccc-admin.php:435
-msgid "Crea il tuo certificato"
-msgstr ""
-
-#: includes/class-wccc-admin.php:467
-#, php-format
+#: includes/class-wccc-admin.php:371
 msgid ""
-"Attiva questa funzionalità per testare buoni Carte Cultura in un ambiente "
-"di prova.<br>Richiedi i buoni test scrivendo a <a href=\"%s\">docenti@sogei."
-"it</a>"
-=======
-#: includes/class-wccc-admin.php:404
-msgid ""
-"Aggiungi la tua Premium Key e mantieni aggiornato <strong>Woocommerce Carte "
-"Cultura - Premium</strong>."
-msgstr ""
-
-#: includes/class-wccc-admin.php:417
-msgid "Certificato"
-msgstr ""
-
-#: includes/class-wccc-admin.php:490
-msgid ""
-"Con questo strumento puoi generare un file .der necessario per richiedere il "
-"tuo certificato sul sito <a target='_blank' href='https://cartegiovani."
+"Con questo strumento puoi generare un file .der necessario per richiedere "
+"il tuo certificato sul sito <a target='_blank' href='https://cartegiovani."
 "cultura.gov.it/giovanimeritoEsercente/#/login'>Carte Cultura</a>."
 msgstr ""
 
-#: includes/class-wccc-admin.php:555
-msgid "Crea il tuo certificato"
-msgstr ""
-
-#: includes/class-wccc-admin.php:567
+#: includes/class-wccc-admin.php:447
 msgid ""
 "Carica il file .cer ottenuto dal sito <a target='_blank' href='https://"
-"cartegiovani.cultura.gov.it/giovanimeritoEsercente/#/login'>Carte Cultura</a>"
+"cartegiovani.cultura.gov.it/giovanimeritoEsercente/#/login'>Carte Cultura</"
+"a>"
 msgstr ""
 
-#: includes/class-wccc-admin.php:589
+#: includes/class-wccc-admin.php:467
 msgid ""
 "Attiva questa funzionalità per testare buoni Carta della Cultura Giovani e "
-"Carta del Merito in un ambiente di prova.<br>Richiedi i buoni test scrivendo "
-"a <a href=\"mailto:numeroverde@cultura.gov.it\">numeroverde@cultura.gov.it</"
-"a>"
->>>>>>> 31839b3 (Cambio stringhe di testo in admin)
+"Carta del Merito in un ambiente di prova.<br>Richiedi i buoni test "
+"scrivendo a <a href=\"mailto:numeroverde@cultura.gov."
+"it\">numeroverde@cultura.gov.it</a>"
 msgstr ""
 
 #: includes/class-wccc-admin.php:526
@@ -102,17 +60,12 @@ msgstr ""
 
 #: includes/class-wccc-admin.php:544
 msgid ""
-"I buoni Carta della Cultura Giovani e Carta del merito verranno validati con "
-"il completamento manuale degli ordini."
+"I buoni Carta della Cultura Giovani e Carta del merito verranno validati "
+"con il completamento manuale degli ordini."
 msgstr ""
 
-<<<<<<< HEAD
 #: includes/class-wccc-admin.php:552
-msgid "Escludi le spese di spedizione dal pagamento con Carte Cultura."
-=======
-#: includes/class-wccc-admin.php:670
 msgid "Escludi le spese di spedizione dal pagamento con le Carte Cultura."
->>>>>>> 31839b3 (Cambio stringhe di testo in admin)
 msgstr ""
 
 #: includes/class-wccc-admin.php:562
@@ -158,27 +111,17 @@ msgid ""
 "buono non sia andata a buon fine."
 msgstr ""
 
-<<<<<<< HEAD
-#: includes/class-wccc-gateway.php:28
-msgid "Buono Carte Cultura"
+#: includes/class-wccc-gateway.php:28 includes/class-wccc-gateway.php:70
+msgid "Carte Cultura"
 msgstr ""
 
-#: includes/class-wccc-gateway.php:29
-msgid ""
-"Consente ai diciottenni di utilizzare il buono a loro riservato per "
-"l'acquisto di materiale didattico."
-msgstr ""
-
-#: includes/class-wccc-gateway.php:61
-=======
-#: includes/class-wccc-gateway.php:53 includes/class-wccc-gateway.php:197
+#: includes/class-wccc-gateway.php:29 includes/class-wccc-gateway.php:76
 msgid ""
 "Consente ai diciottenni di utilizzare buoni Carta Cultura Giovani e Carta "
 "del Merito per l'acquisto di materiale didattico."
 msgstr ""
 
-#: includes/class-wccc-gateway.php:182
->>>>>>> 31839b3 (Cambio stringhe di testo in admin)
+#: includes/class-wccc-gateway.php:61
 msgid "Enable/Disable"
 msgstr ""
 
@@ -194,27 +137,11 @@ msgstr ""
 msgid "This controls the title which the user sees during checkout."
 msgstr ""
 
-#: includes/class-wccc-gateway.php:70
-msgid "Carte Cultura"
-msgstr ""
-
 #: includes/class-wccc-gateway.php:74
 msgid "Messaggio utente"
 msgstr ""
 
-<<<<<<< HEAD
 #: includes/class-wccc-gateway.php:255
-=======
-#: includes/class-wccc-gateway.php:384
-#, php-format
-msgid ""
-"La validazone del buono Carte Cultura ha restituito un errore e non è stato "
-"possibile completare l'ordine, completa il pagamento a <a href=\"%s\">questo "
-"indirizzo</a>."
-msgstr ""
-
-#: includes/class-wccc-gateway.php:502
->>>>>>> 31839b3 (Cambio stringhe di testo in admin)
 msgid ""
 "Uno o più prodotti nel carrello non sono acquistabili con il buono inserito."
 msgstr ""
