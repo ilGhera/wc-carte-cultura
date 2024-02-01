@@ -550,9 +550,9 @@ class WCCC_Admin {
 								echo '<td>';
 										echo '<input type="checkbox" name="wccc-exclude-shipping" value="1" disabled>';
 									echo '<p class="description">' . wp_kses_post( __( 'Escludi le spese di spedizione dal pagamento con le Carte Cultura.', 'wccc' ) ) . '</p>';
-								echo '</td>';
 
 									echo wp_kses_post( $this->get_go_premium( true ) );
+								echo '</td>';
 							echo '</tr>';
 
 							echo '<tr class="wccc-coupon">';
