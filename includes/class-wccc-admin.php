@@ -131,18 +131,31 @@ class WCCC_Admin {
 
 		echo '<li class="setup-cat cat-' . esc_attr( $n ) . '">';
 
+            $old = array(
+                'biglietti per rappresentazioni teatrali e cinematografiche e spettacoli dal vivo',
+                'libri',
+                'abbonamenti a quotidiani e periodici anche in formato digitale',
+                'musica registrata',
+                'prodotti dell’editoria audiovisiva',
+                'titoli di accesso a musei, mostre ed eventi culturali, monumenti, gallerie, aree archeologiche, parchi naturali',
+                'corsi di musica',
+                'corsi di teatro',
+                'corsi di danza',
+                'corsi di lingua straniera',
+            );
+
 			/*L'elenco dei beni dei vari ambiti previsti dalla piattaforma*/
 			$beni_index = array(
-				'biglietti per rappresentazioni teatrali e cinematografiche e spettacoli dal vivo',
-				'libri',
-				'abbonamenti a quotidiani e periodici anche in formato digitale',
-				'musica registrata',
-				'prodotti dell’editoria audiovisiva',
-				'titoli di accesso a musei, mostre ed eventi culturali, monumenti, gallerie, aree archeologiche, parchi naturali',
-				'corsi di musica',
-				'corsi di teatro',
-				'corsi di danza',
-				'corsi di lingua straniera',
+                'formazione',
+                'quotidiani e periodici',
+                'musei, monumenti e parchi naturali ed aree archeologiche',
+                'cinema',
+                'musica registrata',
+                'teatro e danza',
+                'libri',
+                'prodotti dell\'editoria audiovisiva',
+                'eventi culturali',
+                'concerti',
 			);
 
 			$beni       = array_map( 'sanitize_title', $beni_index );
