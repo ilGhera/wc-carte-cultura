@@ -290,12 +290,12 @@ class WCCC_Admin {
 
 		echo '<div class="wrap">';
 			echo '<div class="wrap-left">';
-				echo '<h1>WooCommerce Carte Cultura - ' . esc_html( __( 'Impostazioni', 'wccc' ) ) . '</h1>';
+				echo '<h1>WooCommerce Carte Cultura - ' . esc_html__( 'Impostazioni', 'wccc' ) . '</h1>';
 
 				/*Tabs*/
 				echo '<div class="icon32 icon32-woocommerce-settings" id="icon-woocommerce"></div>';
 				echo '<h2 id="wccc-admin-menu" class="nav-tab-wrapper woo-nav-tab-wrapper">';
-					echo '<a href="#" data-link="wccc-certificate" class="nav-tab nav-tab-active" onclick="return false;">' . esc_html( __( 'Certificato', 'wccc' ) ) . '</a>';
+					echo '<a href="#" data-link="wccc-certificate" class="nav-tab nav-tab-active" onclick="return false;">' . esc_html__( 'Certificato', 'wccc' ) . '</a>';
 					echo '<a href="#" data-link="wccc-options" class="nav-tab" onclick="return false;">' . esc_html__( 'Opzioni', 'wccc' ) . '</a>';
 				echo '</h2>';
 
@@ -304,7 +304,7 @@ class WCCC_Admin {
 
 					/*Carica certificato .pem*/
 					echo '<h3>' . esc_html__( 'Carica il tuo certificato', 'wccc' ) . '</h3>';
-					echo '<p class="description">' . esc_html__( 'Se sei già in posseso di un certificato non devi fare altro che caricarlo con relativa password, nient\'altro.', 'wccc' ) . '</p>';
+					echo '<p class="description">' . esc_html__( 'Se sei già in posseso di un certificato non devi fare altro che caricarlo con relativa password.', 'wccc' ) . '</p>';
 
 					echo '<form name="wccc-upload-certificate" class="wccc-upload-certificate one-of" method="post" enctype="multipart/form-data" action="">';
 						echo '<table class="form-table wccc-table">';
@@ -339,7 +339,7 @@ class WCCC_Admin {
 		} else {
 
 			echo '<input type="file" accept=".pem" name="wccc-certificate" class="wccc-certificate">';
-			echo '<p class="description">' . esc_html__( 'Carica il certificato (.pem) necessario alla connessione con Carte Cultura', 'wccc' ) . '</p>';
+			echo '<p class="description">' . esc_html__( 'Carica il certificato (.pem) necessario alla connessione con Carta della Cultura Giovani e Carta del Merito', 'wccc' ) . '</p>';
 
 		}
 
@@ -367,8 +367,8 @@ class WCCC_Admin {
 		if ( ! self::get_the_file( '.pem' ) ) {
 
 			/*Genera richiesta certificato .der*/
-			echo '<h3>' . esc_html( __( 'Richiedi un certificato', 'wccc' ) ) . wp_kses_post( $this->get_go_premium() ) . '</h3>';
-			echo '<p class="description">' . esc_html__( 'Con questo strumento puoi generare un file .der necessario per richiedere il tuo certificato su Carte Cultura.', 'wccc' ) . '</p>';
+			echo '<h3>' . esc_html__( 'Richiedi un certificato', 'wccc' ) . wp_kses_post( $this->get_go_premium() ) . '</h3>';
+			echo '<p class="description">' . wp_kses_post( __( "Con questo strumento puoi generare un file .der necessario per richiedere il tuo certificato sul sito <a target='_blank' href='https://cartegiovani.cultura.gov.it/giovanimeritoEsercente/#/login'>Carte Cultura</a>.", 'wccc' ) ) . '</p>';
 
 			echo '<form id="generate-certificate-request" method="post" class="one-of" enctype="multipart/form-data" action="">';
 				echo '<table class="form-table wccc-table">';
@@ -432,8 +432,8 @@ class WCCC_Admin {
 			echo '</form>';
 
 			/*Genera certificato .pem*/
-			echo '<h3>' . esc_html( __( 'Crea il tuo certificato', 'wccc' ) ) . wp_kses_post( $this->get_go_premium() ) . '</h3>';
-			echo '<p class="description">' . esc_html__( 'Con questo ultimo passaggio, potrai iniziare a ricevere pagamenti attraverso buoni Carte Cultura.', 'wccc' ) . '</p>';
+			echo '<h3>' . esc_html__( 'Crea il tuo certificato', 'wccc' ) . wp_kses_post( $this->get_go_premium() ) . '</h3>';
+			echo '<p class="description">' . esc_html__( 'Con questo ultimo passaggio, potrai iniziare a ricevere pagamenti attraverso buoni Carta della Cultura Giovani e Carta del Merito.', 'wccc' ) . '</p>';
 
 			echo '<form name="wccc-generate-certificate" class="wccc-generate-certificate one-of" method="post" enctype="multipart/form-data" action="">';
 				echo '<table class="form-table wccc-table">';
@@ -444,7 +444,7 @@ class WCCC_Admin {
 						echo '<td>';
 
 							echo '<input type="file" accept=".cer" name="wccc-cert" class="wccc-cert" disabled>';
-							echo '<p class="description">' . esc_html__( 'Carica il file .cer ottenuto da Carte Cultura per procedere', 'wccc' ) . '</p>';
+							echo '<p class="description">' . wp_kses_post( __( "Carica il file .cer ottenuto dal sito <a target='_blank' href='https://cartegiovani.cultura.gov.it/giovanimeritoEsercente/#/login'>Carte Cultura</a>", 'wccc' ) ) . '</p>';
 
 							echo '<input type="hidden" name="wccc-gen-certificate-hidden" value="1">';
 							echo '<input type="submit" class="button-primary wccc-button" value="' . esc_html__( 'Genera certificato', 'wccc' ) . '" disabled>';
@@ -464,7 +464,7 @@ class WCCC_Admin {
 					echo '<h3>' . esc_html__( 'Modalità Sandbox', 'wccc' ) . '</h3>';
 				echo '<p class="description">';
 					/* Translators: the email address */
-					printf( wp_kses_post( __( 'Attiva questa funzionalità per testare buoni Carte Cultura in un ambiente di prova.<br>Richiedi i buoni test scrivendo a <a href="%s">docenti@sogei.it</a>', 'wccc' ) ), 'mailto:docenti@sogei.it' );
+					echo wp_kses_post( __( "Attiva questa funzionalità per testare buoni Carta della Cultura Giovani e Carta del Merito in un ambiente di prova.<br>Richiedi i buoni test scrivendo a <a href=\"mailto:numeroverde@cultura.gov.it\">numeroverde@cultura.gov.it</a>", 'wccc' ) );;
 				echo '</p>';
 
 					echo '<form name="wccc-sandbox" class="wccc-sandbox" method="post" enctype="multipart/form-data" action="">';
@@ -531,7 +531,7 @@ class WCCC_Admin {
 								echo '<th scope="row">' . esc_html__( 'Controllo prodotti', 'wccc' ) . '</th>';
 								echo '<td>';
 										echo '<input type="checkbox" name="wccc-items-check" value="1" disabled>';
-									echo '<p class="description">' . wp_kses_post( __( 'Mostra il metodo di pagamento solo se il/ i prodotti a carrello sono acquistabili con buoni <i>Carte Cultura</i>.<br>Più prodotti dovranno prevedere l\'uso di buoni dello stesso ambito di utilizzo.', 'wccc' ) ) . '</p>';
+									echo '<p class="description">' . wp_kses_post( __( 'Mostra il metodo di pagamento solo se il/ i prodotti a carrello sono acquistabili con buoni <i>Carta della Cultura Giovani</i> e <i>Carta del Merito</i>.<br>Più prodotti dovranno prevedere l\'uso di buoni dello stesso ambito di utilizzo.', 'wccc' ) ) . '</p>';
 
 									echo wp_kses_post( $this->get_go_premium( true ) );
 								echo '</td>';
@@ -541,7 +541,7 @@ class WCCC_Admin {
 								echo '<th scope="row">' . esc_html__( 'Ordini in sospeso', 'wccc' ) . '</th>';
 								echo '<td>';
 										echo '<input type="checkbox" name="wccc-orders-on-hold" value="1" disabled>';
-									echo '<p class="description">' . wp_kses_post( __( 'I buoni Carte Cultura verranno validati con il completamento manuale degli ordini.', 'wccc' ) ) . '</p>';
+									echo '<p class="description">' . wp_kses_post( __( 'I buoni Carta della Cultura Giovani e Carta del merito verranno validati con il completamento manuale degli ordini.', 'wccc' ) ) . '</p>';
 
 									echo wp_kses_post( $this->get_go_premium( true ) );
 								echo '</td>';
@@ -549,17 +549,17 @@ class WCCC_Admin {
 								echo '<th scope="row">' . esc_html__( 'Spese di spedizione', 'wccc' ) . '</th>';
 								echo '<td>';
 										echo '<input type="checkbox" name="wccc-exclude-shipping" value="1" disabled>';
-									echo '<p class="description">' . wp_kses_post( __( 'Escludi le spese di spedizione dal pagamento con Carte Cultura.', 'wccc' ) ) . '</p>';
+									echo '<p class="description">' . wp_kses_post( __( 'Escludi le spese di spedizione dal pagamento con le Carte Cultura.', 'wccc' ) ) . '</p>';
+								echo '</td>';
 
 									echo wp_kses_post( $this->get_go_premium( true ) );
-								echo '</td>';
 							echo '</tr>';
 
 							echo '<tr class="wccc-coupon">';
 								echo '<th scope="row">' . esc_html__( 'Conversione in coupon', 'wccc' ) . '</th>';
 								echo '<td>';
 									echo '<input type="checkbox" name="wccc-coupon" value="1" disabled>';
-									echo '<p class="description">' . wp_kses_post( __( 'Nel caso in cui il buono <i>Carte Cultura</i> inserito sia inferiore al totale a carrello, viene convertito in <i>Codice promozionale</i> ed applicato all\'ordine.', 'wccc' ) ) . '</p>';
+									echo '<p class="description">' . wp_kses_post( __( 'Nel caso in cui il buono <i>Carta della Cultura Giovani</i> o <i>Carta del Merito</i> inserito sia inferiore al totale a carrello, viene convertito in <i>Codice promozionale</i> ed applicato all\'ordine.', 'wccc' ) ) . '</p>';
 
 									echo wp_kses_post( $this->get_go_premium( true ) );
 								echo '</td>';
