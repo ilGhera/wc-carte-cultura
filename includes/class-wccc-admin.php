@@ -133,16 +133,16 @@ class WCCC_Admin {
 
 			/*L'elenco dei beni dei vari ambiti previsti dalla piattaforma*/
 			$beni_index = array(
-                'biglietti per rappresentazioni teatrali e cinematografiche e spettacoli dal vivo',
-                'libri',
-                'abbonamenti a quotidiani e periodici anche in formato digitale',
-                'musica registrata',
-                'prodotti dell’editoria audiovisiva',
-                'titoli di accesso a musei, mostre ed eventi culturali, monumenti, gallerie, aree archeologiche, parchi naturali',
-                'corsi di musica',
-                'corsi di teatro',
-                'corsi di danza',
-                'corsi di lingua straniera',
+				'biglietti per rappresentazioni teatrali e cinematografiche e spettacoli dal vivo',
+				'libri',
+				'abbonamenti a quotidiani e periodici anche in formato digitale',
+				'musica registrata',
+				'prodotti dell’editoria audiovisiva',
+				'titoli di accesso a musei, mostre ed eventi culturali, monumenti, gallerie, aree archeologiche, parchi naturali',
+				'corsi di musica',
+				'corsi di teatro',
+				'corsi di danza',
+				'corsi di lingua straniera',
 			);
 
 			$beni       = array_map( 'sanitize_title', $beni_index );
