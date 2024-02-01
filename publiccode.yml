@@ -10,14 +10,14 @@ description:
     documentation: 'https://www.ilghera.com/category/documentation/wc-carta-docente-18app/'
     features:
       - Carica il tuo certificato .pem
-      - Abbina le categorie WooCommerce agli ambiti d'acquisto di Carta del Merito
+      - Abbina le categorie WooCommerce agli ambiti d'acquisto delle Carte Cultura
       - Nuovo metodo di pagamento in pagina di checkout
       - Opzione Sandbox per effettuare test d'acquisto
       - (Premium) Generazione richiesta certificato .der
       - (Premium) Generazione certificato .pem
-      - (Premium) Conversione valore buono Carta del Merito in voucher WooCommerce
-      - (Premium) Mostra il metodo di pagamento solo se i prodotti a carrello sono acquistabili con C.d.D.
-      - (Premium) Opzione ordini in sospeso con validazione buoni C.d.D. solo a completamento manuale dell'ordine 
+      - (Premium) Conversione valore buono Carta della Cultura Giovani/ Carta del Merito in voucher WooCommerce
+      - (Premium) Mostra il metodo di pagamento solo se i prodotti a carrello sono acquistabili con le Carte Cultura
+      - (Premium) Opzione ordini in sospeso con validazione buoni Carta della Cultura Giovani/ Carta del Merito solo a completamento manuale dell'ordine 
     genericName: WordPress plugin
     longDescription: |
       Ogni insegnante di ruolo, in Italia, ha a disposizione un bonus di € 500
@@ -31,9 +31,9 @@ description:
       dell'Università e della Ricerca.
 
 
-      Con **Woocommerce Carta del Merito**, consentirai agli insegnanti di
-      acquistare i tuoi prodotti utilizzando i buoni generati su _Carta del
-      Docente._
+      Con **Woocommerce Carte Cultura**, consentirai agli insegnanti di
+      acquistare i tuoi prodotti utilizzando i buoni generati su
+      _Carta della Cultura Giovani e Carta del Merito._
 
 
       ​
@@ -55,13 +55,13 @@ description:
       ### Imposta i prodotti acquistabili
 
 
-      I buoni generati sulla piattaforma _Carta del Merito_, possono essere
-      utilizzati solo per acquistare beni della stessa tipologia per i quali
-      sono stati creati.
+      I buoni generati sulle piattaforme _Carta della Cultura Giovani_ e
+      _Carta del Merito_, possono essere utilizzati solo per acquistare
+      beni della stessa tipologia per i quali sono stati creati.
 
 
-      Impostando queste categorie con lo strumento dedicato, **Woocommerce Carta
-      Docente** effettuerà un controllo nella fase di checkout, avvisando se
+      Impostando queste categorie con lo strumento dedicato, **Woocommerce Carte Cultura**
+      effettuerà un controllo nella fase di checkout, avvisando se
       necessario l'utente della mancata corrispondenza.
 
 
@@ -74,14 +74,12 @@ description:
       ### Facile per l'utente
 
 
-      Dopo aver attivato il certificato, **Woocommerce Carta del Merito** 
+      Dopo aver attivato il certificato, **Woocommerce Carte Cultura** 
       aggiungerà il nuovo metodo di pagamento tra quelli disponibili nella
       pagina di checkout.
 
 
-      l docente non dovrà fare altro che inserire il codice del suo buono,
-      nient'altro.
-
+      L'utente non dovrà fare altro che inserire il codice del suo buono.
 
       ![](https://i0.wp.com/www.ilghera.com/wp-content/uploads/2018/07/Schermata-da-2018-07-05-12-33-06.png?w=343&ssl=1)
     screenshots:
@@ -94,8 +92,9 @@ description:
       - |-
         https://raw.githubusercontent.com/ilGhera/wc-carta-docente/master/images/metodo-di-pagamento.jpg
     shortDescription: |-
-      Con Woocommerce Carta del Merito, consentirai agli insegnanti di acquistare i
-      tuoi prodotti utilizzando i buoni generati su Carta delDocente.
+      Con Woocommerce Carte Cultura gli utenti potranno acquistare i
+      tuoi prodotti utilizzando i buoni generati con Carta della Cultura Giovane
+      e Carta del Merito.
 developmentStatus: stable
 intendedAudience:
   countries:
@@ -126,10 +125,10 @@ maintenance:
     - email: andrea@ilghera.com
       name: Andrea Gherardi
   type: internal
-name: WooCommerce Carta del Merito
+name: WooCommerce Carte Cultura
 platforms:
   - web
-releaseDate: '2024-01-22'
+releaseDate: '2024-02-01'
 softwareType: addon
 softwareVersion: 1.4.0
-url: 'https://github.com/ilGhera/wc-carta-del-merito'
+url: 'https://github.com/ilGhera/wc-carta-cultura'
