@@ -211,7 +211,7 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 	 */
 	public function display_code( $order ) {
 
-		$data         = $order->get_data();
+		$data      = $order->get_data();
 		$wccc_code = null;
 
 		if ( 'carte-cultura' === $data['payment_method'] ) {
@@ -327,7 +327,7 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 			'redirect' => '',
 		);
 
-		$data         = $this->get_post_data();
+		$data      = $order->get_data();
 		$wccc_code = $data['wc-codice-carte-cultura']; // Il buono inserito dall'utente.
 
 		if ( $wccc_code ) {
