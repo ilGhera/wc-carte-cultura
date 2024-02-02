@@ -10,76 +10,115 @@ description:
     documentation: 'https://www.ilghera.com/category/documentation/wc-carta-docente-18app/'
     features:
       - Carica il tuo certificato .pem
-      - Abbina le categorie WooCommerce agli ambiti d'acquisto delle Carte Cultura
+      - |-
+        Abbina le categorie WooCommerce agli ambiti d'acquisto delle Carte
+        Cultura
       - Nuovo metodo di pagamento in pagina di checkout
       - Opzione Sandbox per effettuare test d'acquisto
       - (Premium) Generazione richiesta certificato .der
       - (Premium) Generazione certificato .pem
-      - (Premium) Conversione valore buono Carta della Cultura Giovani/ Carta del Merito in voucher WC
-      - (Premium) Mostra il metodo di pagamento solo se i prodotti sono acquistabili con le Carte Cultura
-      - (Premium) Opzione ordini in sospeso con validazione buoni solo a completamento manuale dell'ordine 
+      - |-
+        (Premium) Conversione valore buono Carta della Cultura Giovani/ Carta
+        del Merito in voucher WC
+      - |-
+        (Premium) Mostra il metodo di pagamento solo se i prodotti sono
+        acquistabili con le Carte Cultura
+      - |-
+        (Premium) Opzione ordini in sospeso con validazione buoni solo a
+        completamento manuale dell'ordine
     genericName: WordPress plugin
     longDescription: |
       Ogni insegnante di ruolo, in Italia, ha a disposizione un bonus di € 500
+
       per ogni anno scolastico, da utilizzarsi per aggiornamenti professionali.
 
 
+
       Possono essere acquistati libri, riviste, ingressi nei musei, biglietti
+
       per eventi culturali, teatro e cinema, così come iscrizioni a corsi di
+
       laurea, master universitari e corsi di aggiornamento, svolti da enti
+
       qualificati o accreditati presso il Ministero dell'Istruzione,
+
       dell'Università e della Ricerca.
 
 
+
       Con **Woocommerce Carte Cultura**, consentirai agli insegnanti di
+
       acquistare i tuoi prodotti utilizzando i buoni generati su
+
       _Carta della Cultura Giovani e Carta del Merito._
 
 
+
       ​
+
 
 
       ### Presentati come esercente
 
 
+
       Carica il tuo certificato .pem ed identificati come esercente, una luce
+
       verde confermerà l'avvenuto collegamento tra le due piattaforme.
+
 
 
       ![](https://i1.wp.com/www.ilghera.com/wp-content/uploads/2024/02/carte-cultura-crea-certificato.png)
 
 
+
       ​
+
 
 
       ### Imposta i prodotti acquistabili
 
 
+
       I buoni generati sulle piattaforme _Carta della Cultura Giovani_ e
+
       _Carta del Merito_, possono essere utilizzati solo per acquistare
+
       beni della stessa tipologia per i quali sono stati creati.
 
 
-      Impostando queste categorie con lo strumento dedicato, **Woocommerce Carte Cultura**
+
+      Impostando queste categorie con lo strumento dedicato, **Woocommerce Carte
+      Cultura**
+
       effettuerà un controllo nella fase di checkout, avvisando se
+
       necessario l'utente della mancata corrispondenza.
+
 
 
       ![](https://i1.wp.com/www.ilghera.com/wp-content/uploads/2024/02/carte-cultura-categorie-prodotti.png)
 
 
+
       ​
+
 
 
       ### Facile per l'utente
 
 
+
       Dopo aver attivato il certificato, **Woocommerce Carte Cultura** 
+
       aggiungerà il nuovo metodo di pagamento tra quelli disponibili nella
+
       pagina di checkout.
 
 
+
       L'utente non dovrà fare altro che inserire il codice del suo buono.
+
 
       ![](https://i1.wp.com/www.ilghera.com/wp-content/uploads/2024/02/carte-cultura-woocommerce-checkout.png)
     screenshots:
@@ -92,7 +131,9 @@ description:
       - |-
         https://raw.githubusercontent.com/ilGhera/wc-carte-cultura/master/images/carte-cultura-woocommerce-checkout.jpg
     shortDescription: |-
-      Con WC Carte Cultura gli utenti potranno acquistare i tuoi prodotti utilizzando i buoni generati con Carta della Cultura Giovane e Carta del Merito.
+      Con WC Carte Cultura gli utenti potranno acquistare i tuoi prodotti
+      utilizzando i buoni generati con Carta della Cultura Giovane e Carta del
+      Merito.
 developmentStatus: stable
 intendedAudience:
   countries:
@@ -117,7 +158,7 @@ localisation:
     - it
   localisationReady: true
 logo: |-
-  https://raw.githubusercontent.com/ilGhera/wc-carte-cultura/master/images/WC-Carte-Cultura.svg 
+  https://raw.githubusercontent.com/ilGhera/wc-carte-cultura/master/images/WC-Carte-Cultura.png
 maintenance:
   contacts:
     - email: andrea@ilghera.com
