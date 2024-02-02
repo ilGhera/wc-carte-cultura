@@ -46,7 +46,7 @@ description:
       verde confermerà l'avvenuto collegamento tra le due piattaforme.
 
 
-      ![](https://i1.wp.com/www.ilghera.com/wp-content/uploads/2018/07/Schermata-da-2018-07-04-21-30-08.png?w=615&ssl=1)
+      ![](https://i1.wp.com/www.ilghera.com/wp-content/uploads/2024/02/carte-cultura-crea-certificato.png)
 
 
       ​
@@ -65,7 +65,7 @@ description:
       necessario l'utente della mancata corrispondenza.
 
 
-      ![](https://i2.wp.com/www.ilghera.com/wp-content/uploads/2018/07/Schermata-da-2018-07-04-23-59-42.png?w=688&ssl=1)
+      ![](https://i1.wp.com/www.ilghera.com/wp-content/uploads/2024/02/carte-cultura-categorie-prodotti.png)
 
 
       ​
@@ -81,7 +81,7 @@ description:
 
       L'utente non dovrà fare altro che inserire il codice del suo buono.
 
-      ![](https://i0.wp.com/www.ilghera.com/wp-content/uploads/2018/07/Schermata-da-2018-07-05-12-33-06.png?w=343&ssl=1)
+      ![](https://i1.wp.com/www.ilghera.com/wp-content/uploads/2024/02/carte-cultura-woocommerce-checkout.png)
     screenshots:
       - |-
         https://raw.githubusercontent.com/ilGhera/wc-carta-docente/master/images/icon.jpg
@@ -131,4 +131,4 @@ platforms:
 releaseDate: '2024-02-01'
 softwareType: addon
 softwareVersion: 1.4.0
-url: 'https://github.com/ilGhera/wc-carta-cultura'
+url: 'https://github.com/ilGhera/wc-carte-cultura'
