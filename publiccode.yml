@@ -15,9 +15,9 @@ description:
       - Opzione Sandbox per effettuare test d'acquisto
       - (Premium) Generazione richiesta certificato .der
       - (Premium) Generazione certificato .pem
-      - (Premium) Conversione valore buono Carta della Cultura Giovani/ Carta del Merito in voucher WooCommerce
-      - (Premium) Mostra il metodo di pagamento solo se i prodotti a carrello sono acquistabili con le Carte Cultura
-      - (Premium) Opzione ordini in sospeso con validazione buoni Carta della Cultura Giovani/ Carta del Merito solo a completamento manuale dell'ordine 
+      - (Premium) Conversione valore buono Carta della Cultura Giovani/ Carta del Merito in voucher WC
+      - (Premium) Mostra il metodo di pagamento solo se i prodotti sono acquistabili con le Carte Cultura
+      - (Premium) Opzione ordini in sospeso con validazione buoni solo a completamento manuale dell'ordine 
     genericName: WordPress plugin
     longDescription: |
       Ogni insegnante di ruolo, in Italia, ha a disposizione un bonus di € 500
@@ -84,17 +84,15 @@ description:
       ![](https://i1.wp.com/www.ilghera.com/wp-content/uploads/2024/02/carte-cultura-woocommerce-checkout.png)
     screenshots:
       - |-
-        https://raw.githubusercontent.com/ilGhera/wc-carta-docente/master/images/icon.jpg
+        https://raw.githubusercontent.com/ilGhera/wc-carte-cultura/master/images/WC-Carte-Cultura.jpg
       - |-
-        https://raw.githubusercontent.com/ilGhera/wc-carta-docente/master/images/carica-certificato.jpg
+        https://raw.githubusercontent.com/ilGhera/wc-carte-cultura/master/images/carte-cultura-carica-certificato.jpg
       - |-
-        https://raw.githubusercontent.com/ilGhera/wc-carta-docente/master/images/abbinamento-categorie.jpg
+        https://raw.githubusercontent.com/ilGhera/wc-carte-cultura/master/images/carte-cultura-categorie-prodotti.jpg
       - |-
-        https://raw.githubusercontent.com/ilGhera/wc-carta-docente/master/images/metodo-di-pagamento.jpg
+        https://raw.githubusercontent.com/ilGhera/wc-carte-cultura/master/images/carte-cultura-woocommerce-checkout.jpg
     shortDescription: |-
-      Con Woocommerce Carte Cultura gli utenti potranno acquistare i
-      tuoi prodotti utilizzando i buoni generati con Carta della Cultura Giovane
-      e Carta del Merito.
+      Con WC Carte Cultura gli utenti potranno acquistare i tuoi prodotti utilizzando i buoni generati con Carta della Cultura Giovane e Carta del Merito.
 developmentStatus: stable
 intendedAudience:
   countries:
@@ -119,7 +117,7 @@ localisation:
     - it
   localisationReady: true
 logo: |-
-  https://raw.githubusercontent.com/ilGhera/wc-carta-docente/master/images/icon.png
+  https://raw.githubusercontent.com/ilGhera/wc-carte-cultura/master/images/WC-Carte-Cultura.png 
 maintenance:
   contacts:
     - email: andrea@ilghera.com
