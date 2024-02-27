@@ -8,6 +8,8 @@
  * @since 0.9.0
  */
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * WCCC_Soap_Client class
  *
@@ -185,3 +187,4 @@ class WCCC_Soap_Client {
 	}
 
 }
+
