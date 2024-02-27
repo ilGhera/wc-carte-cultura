@@ -10,7 +10,7 @@
  * Requires at least: 4.0
  * Tested up to: 6.4
  * WC tested up to: 8
- * Text Domain: wccc
+ * Text Domain: wc-carte-cultura
  * Domain Path: /languages
  *
  * @package wc-carte-cultura

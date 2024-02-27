@@ -27,8 +27,8 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 		$this->plugin_id          = 'woocommerce_carte_cultura';
 		$this->id                 = 'carte-cultura';
 		$this->has_fields         = true;
-		$this->method_title       = __( 'Carte Cultura', 'wccc' );
-		$this->method_description = __( 'Consente ai diciottenni di utilizzare buoni Carta Cultura Giovani e Carta del Merito per l\'acquisto di materiale didattico.', 'wccc' );
+		$this->method_title       = __( 'Carte Cultura', 'wc-carte-cultura' );
+		$this->method_description = __( 'Consente ai diciottenni di utilizzare buoni Carta Cultura Giovani e Carta del Merito per l\'acquisto di materiale didattico.', 'wc-carte-cultura' );
 
 		if ( get_option( 'wccc-image' ) ) {
 
@@ -62,20 +62,20 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 				'enabled'     => array(
 					'title'   => __( 'Enable/Disable', 'woocommerce' ),
 					'type'    => 'checkbox',
-					'label'   => __( 'Abilita pagamento con Carte Cultura', 'wccc' ),
+					'label'   => __( 'Abilita pagamento con Carte Cultura', 'wc-carte-cultura' ),
 					'default' => 'yes',
 				),
 				'title'       => array(
 					'title'       => __( 'Title', 'woocommerce' ),
 					'type'        => 'text',
-					'description' => __( 'This controls the title which the user sees during checkout.', 'wccc' ),
-					'default'     => __( 'Carte Cultura', 'wccc' ),
+					'description' => __( 'This controls the title which the user sees during checkout.', 'wc-carte-cultura' ),
+					'default'     => __( 'Carte Cultura', 'wc-carte-cultura' ),
 					'desc_tip'    => true,
 				),
 				'description' => array(
 					'title'   => __( 'Messaggio utente', 'woocommerce' ),
 					'type'    => 'textarea',
-					'default' => __( 'Consente ai diciottenni di utilizzare buoni Carta Cultura Giovani e Carta del Merito per l\'acquisto di materiale didattico.', 'wccc' ),
+					'default' => __( 'Consente ai diciottenni di utilizzare buoni Carta Cultura Giovani e Carta del Merito per l\'acquisto di materiale didattico.', 'wc-carte-cultura' ),
 				),
 			)
 		);
@@ -91,7 +91,7 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 		<p>
 			<?php echo wp_kses_post( $this->description ); ?>
 			<label for="wc-codice-carte-cultura">
-				<?php esc_html_e( 'Inserisci qui il tuo codice', 'wccc' ); ?>
+				<?php esc_html_e( 'Inserisci qui il tuo codice', 'wc-carte-cultura' ); ?>
 				<span class="required">*</span>
 			</label>
 			<input type="text" class="wc-codice-carte-cultura" id="wc-codice-carte-cultura" name="wc-codice-carte-cultura" />
@@ -218,7 +218,7 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 
 		if ( 'carte-cultura' === $data['payment_method'] ) {
 
-			echo '<p><strong>' . esc_html__( 'Buono Carte Cultura', 'wccc' ) . ': </strong>' . esc_html( $order->get_meta( 'wc-codice-carte-cultura' ) ) . '</p>';
+			echo '<p><strong>' . esc_html__( 'Buono Carte Cultura', 'wc-carte-cultura' ) . ': </strong>' . esc_html( $order->get_meta( 'wc-codice-carte-cultura' ) ) . '</p>';
 
 		}
 
@@ -254,7 +254,7 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 
 			if ( ! $purchasable ) {
 
-				$output = __( 'Uno o più prodotti nel carrello non sono acquistabili con il buono inserito.', 'wccc' );
+				$output = __( 'Uno o più prodotti nel carrello non sono acquistabili con il buono inserito.', 'wc-carte-cultura' );
 
 			} else {
 
@@ -346,7 +346,7 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 			} else {
 
 				/* Translators: Notifica all'utente nella pagina di checkout */
-				wc_add_notice( sprintf( __( 'Buono Carte Cultura - %s', 'wccc' ), $notice ), 'error' );
+				wc_add_notice( sprintf( __( 'Buono Carte Cultura - %s', 'wc-carte-cultura' ), $notice ), 'error' );
 
 			}
 		}
