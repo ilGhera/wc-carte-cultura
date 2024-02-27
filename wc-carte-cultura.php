@@ -16,6 +16,8 @@
  * @package wc-carte-cultura
  */
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Attivazione
  */
