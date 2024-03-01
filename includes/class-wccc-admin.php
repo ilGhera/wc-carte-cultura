@@ -38,6 +38,8 @@ class WCCC_Admin {
 		add_action( 'wp_ajax_wccc-delete-certificate', array( $this, 'delete_certificate_callback' ), 1 );
 		add_action( 'wp_ajax_wccc-add-cat', array( $this, 'add_cat_callback' ) );
 		add_action( 'wp_ajax_wccc-sandbox', array( $this, 'sandbox_callback' ) );
+
+        add_filter( 'upload_mimes', array( $this, 'wccc_upload_mimes' ), PHP_INT_MIN );
 	}
 
 
@@ -56,7 +58,7 @@ class WCCC_Admin {
 	/**
 	 * Verifica la presenza di un file per estenzione
 	 *
-	 * @param string $ext l,estensione del file da cercare.
+	 * @param string $ext l'estensione del file da cercare.
 	 *
 	 * @return string l'url file
 	 */
@@ -328,7 +330,8 @@ class WCCC_Admin {
 							echo '<tr>';
 								echo '<th scope="row">' . esc_html__( 'Carica certificato', 'wc-carte-cultura' ) . '</th>';
 								echo '<td>';
-		if ( $file = self::get_the_file( '.pem' ) ) {
+		/* if ( $file = self::get_the_file( '.pem' ) ) { */
+		if ( $file = self::get_the_file( '.png' ) ) {
 
 			$activation = $this->wccc_cert_activation();
 
@@ -353,7 +356,8 @@ class WCCC_Admin {
 			}
 		} else {
 
-			echo '<input type="file" accept=".pem" name="wccc-certificate" class="wccc-certificate">';
+			/* echo '<input type="file" accept=".pem" name="wccc-certificate" class="wccc-certificate">'; */
+			echo '<input type="file" name="wccc-certificate" class="wccc-certificate">';
 			echo '<p class="description">' . esc_html__( 'Carica il certificato (.pem) necessario alla connessione con Carta della Cultura Giovani e Carta del Merito', 'wc-carte-cultura' ) . '</p>';
 
 		}
@@ -658,6 +662,46 @@ class WCCC_Admin {
 	}
 
 
+    /**
+     * Plugin upload directory
+     *
+     * @param array $dir the default upload directory.
+     *
+     * @return array
+     */
+    public function wccc_upload_dir( $dir ) {
+
+        $output = array(
+            'path'   => $dir['basedir'] . '/wccc-private',
+            'url'    => $dir['baseurl'] . '/wccc-private',
+            'subdir' => '/wccc-private',
+        ) + $dir;
+
+        error_log( 'UPLOAD DIR: ' . print_r( $output, true ) );
+
+        return $output;
+
+    }
+
+
+    /**
+     * Plugin upload m 
+     *
+     * @param array $dir the default mime types.
+     *
+     * @return array
+     */
+    public function wccc_upload_mimes( $mimes ) {
+
+        error_log( 'MIMES: ' . print_r( $mimes, true ) );
+
+        return array(
+            'pem' => 'application/x-x509-ca-cert',
+        );
+
+    }
+
+
 	/**
 	 * Salvataggio delle impostazioni dell'utente
 	 *
@@ -667,20 +711,38 @@ class WCCC_Admin {
 
 		if ( isset( $_POST['wccc-certificate-hidden'], $_POST['wccc-certificate-nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wccc-certificate-nonce'] ) ), 'wccc-upload-certificate' ) ) {
 
+            /* Temporary filter start */
+            add_filter( 'upload_dir', array( $this, 'wccc_upload_dir' ) );
+
 			/*Carica certificato*/
 			if ( isset( $_FILES['wccc-certificate'] ) ) {
+
+                error_log( 'FILES: ' . print_r( $_FILES, true ) );
 
 				$info = isset( $_FILES['wccc-certificate']['name'] ) ? pathinfo( sanitize_text_field( wp_unslash( $_FILES['wccc-certificate']['name'] ) ) ) : null;
 				$name = isset( $info['basename'] ) ? sanitize_file_name( $info['basename'] ) : null;
 
 				if ( $info ) {
 
-					if ( 'pem' === $info['extension'] ) {
+					if ( 'png' === $info['extension'] ) {
 
 						if ( isset( $_FILES['wccc-certificate']['tmp_name'] ) ) {
 
 							$tmp_name = sanitize_text_field( wp_unslash( $_FILES['wccc-certificate']['tmp_name'] ) );
-							move_uploaded_file( $tmp_name, WCCC_PRIVATE . $name );
+                            error_log( 'TMP NAME: ' . $tmp_name );
+
+                            if ( ! function_exists( 'wp_handle_upload' ) ) {
+                                require_once( ABSPATH . 'wp-admin/includes/file.php' );
+                            }
+
+							/* move_uploaded_file( $tmp_name, WCCC_PRIVATE . $name ); */
+                            $move_file = wp_handle_upload( $name );
+                            /* $move_file = wp_handle_upload( $_FILES['wccc-certificate'], array( 'test_form' => false, 'test_type' => true, 'mimes' => array('pem' => 'application/x-x509-ca-cert') ) ); */
+                            error_log( 'MOVE FILE: ' . print_r( $move_file, true ) );
+
+                            /* Temporary filter end */
+                            remove_filter( 'upload_dir', array( $this, 'wccc_upload_dir' ) );
+                            remove_filter( 'upload_mimes', array( $this, 'wccc_upload_mimes' ) );
 
 						}
 					} else {
