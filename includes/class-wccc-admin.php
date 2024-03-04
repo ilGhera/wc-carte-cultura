@@ -33,13 +33,16 @@ class WCCC_Admin {
 
 		$this->sandbox = get_option( 'wccc-sandbox' );
 
+        /* Actions */
 		add_action( 'admin_init', array( $this, 'wccc_save_settings' ) );
 		add_action( 'admin_menu', array( $this, 'register_options_page' ) );
 		add_action( 'wp_ajax_wccc-delete-certificate', array( $this, 'delete_certificate_callback' ), 1 );
 		add_action( 'wp_ajax_wccc-add-cat', array( $this, 'add_cat_callback' ) );
 		add_action( 'wp_ajax_wccc-sandbox', array( $this, 'sandbox_callback' ) );
 
-        add_filter( 'upload_mimes', array( $this, 'wccc_upload_mimes' ), PHP_INT_MIN );
+        /* Filters */
+        add_filter( 'wp_check_filetype_and_ext', array( $this, 'wccc_allow_pem' ), 10, 4 );
+
 	}
 
 
@@ -330,8 +333,7 @@ class WCCC_Admin {
 							echo '<tr>';
 								echo '<th scope="row">' . esc_html__( 'Carica certificato', 'wc-carte-cultura' ) . '</th>';
 								echo '<td>';
-		/* if ( $file = self::get_the_file( '.pem' ) ) { */
-		if ( $file = self::get_the_file( '.png' ) ) {
+		if ( $file = self::get_the_file( '.pem' ) ) {
 
 			$activation = $this->wccc_cert_activation();
 
@@ -677,27 +679,31 @@ class WCCC_Admin {
             'subdir' => '/wccc-private',
         ) + $dir;
 
-        error_log( 'UPLOAD DIR: ' . print_r( $output, true ) );
-
         return $output;
 
     }
 
 
     /**
-     * Plugin upload m 
+     * Allow upload pem files 
      *
-     * @param array $dir the default mime types.
+     * @param array $file      Full path to the file. 
+     * @param array $filename  The name of the file (may differ from $file due to $file being in a tmp directory). 
+     * @param array $mimes     Array of mime types keyed by their file extension regex, or null if none were provided. 
+     * @param array $real_mime The actual mime type or false if the type cannot be determined. 
      *
      * @return array
      */
-    public function wccc_upload_mimes( $mimes ) {
+    function wccc_allow_pem( $file, $filename, $mimes, $real_mime ) {
 
-        error_log( 'MIMES: ' . print_r( $mimes, true ) );
+        if ( false !== strpos( $mimes, '.pem' ) ) {
 
-        return array(
-            'pem' => 'application/x-x509-ca-cert',
-        );
+            $file['ext']  = 'pem';
+            $file['type'] = 'application/x-x509-ca-cert';
+
+        }
+
+        return $file;
 
     }
 
@@ -717,32 +723,22 @@ class WCCC_Admin {
 			/*Carica certificato*/
 			if ( isset( $_FILES['wccc-certificate'] ) ) {
 
-                error_log( 'FILES: ' . print_r( $_FILES, true ) );
-
 				$info = isset( $_FILES['wccc-certificate']['name'] ) ? pathinfo( sanitize_text_field( wp_unslash( $_FILES['wccc-certificate']['name'] ) ) ) : null;
 				$name = isset( $info['basename'] ) ? sanitize_file_name( $info['basename'] ) : null;
 
 				if ( $info ) {
 
-					if ( 'png' === $info['extension'] ) {
+					if ( 'pem' === $info['extension'] ) {
 
 						if ( isset( $_FILES['wccc-certificate']['tmp_name'] ) ) {
 
 							$tmp_name = sanitize_text_field( wp_unslash( $_FILES['wccc-certificate']['tmp_name'] ) );
-                            error_log( 'TMP NAME: ' . $tmp_name );
 
                             if ( ! function_exists( 'wp_handle_upload' ) ) {
                                 require_once( ABSPATH . 'wp-admin/includes/file.php' );
                             }
 
-							/* move_uploaded_file( $tmp_name, WCCC_PRIVATE . $name ); */
-                            $move_file = wp_handle_upload( $name );
-                            /* $move_file = wp_handle_upload( $_FILES['wccc-certificate'], array( 'test_form' => false, 'test_type' => true, 'mimes' => array('pem' => 'application/x-x509-ca-cert') ) ); */
-                            error_log( 'MOVE FILE: ' . print_r( $move_file, true ) );
-
-                            /* Temporary filter end */
-                            remove_filter( 'upload_dir', array( $this, 'wccc_upload_dir' ) );
-                            remove_filter( 'upload_mimes', array( $this, 'wccc_upload_mimes' ) );
+                            $move_file = wp_handle_upload( $_FILES['wccc-certificate'], array( 'test_form' => false, 'test_type' => true, 'mimes' => array( 'pem' => 'application/x-x509-ca-cert') ) );
 
 						}
 					} else {
