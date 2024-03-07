@@ -169,5 +169,5 @@ platforms:
   - web
 releaseDate: '2024-02-01'
 softwareType: addon
-softwareVersion: 1.4.0
+softwareVersion: 0.9.0
 url: 'https://github.com/ilGhera/wc-carte-cultura'
