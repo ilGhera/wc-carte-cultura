@@ -3,17 +3,16 @@
  * Plugin name: WC Carte Cultura
  * Plugin URI: https://www.ilghera.com/product/woocommerce-carte-cultura-premium/
  * Description: Abilita in WooCommerce il pagamento con Carte Cultura prevista dallo stato Italiano.
- * Author: ilGhera
- *
  * Version: 0.9.0
- * Author URI: https://ilghera.com
  * Requires at least: 4.0
  * Tested up to: 6.4
  * WC tested up to: 8
- * Text Domain: wc-carte-cultura
- * Domain Path: /languages
+ * Author: ilGhera
+ * Author URI: https://ilghera.com
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
+ * Text Domain: wc-carte-cultura
+ * Domain Path: /languages
  *
  * @package wc-carte-cultura
  */
