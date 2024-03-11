@@ -12,6 +12,8 @@
  * WC tested up to: 8
  * Text Domain: wc-carte-cultura
  * Domain Path: /languages
+ * License: GPLv3
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  *
  * @package wc-carte-cultura
  */
