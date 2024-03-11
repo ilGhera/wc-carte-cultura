@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WC Carte Cultura 0.9.0\n"
-"POT-Creation-Date: 2024-02-27 11:36+0100\n"
+"POT-Creation-Date: 2024-03-11 11:31+0100\n"
 "PO-Revision-Date: 2018-07-02 12:47+0200\n"
 "Last-Translator: \n"
 "Language-Team: ilGhera\n"
@@ -16,29 +16,29 @@ msgstr ""
 "X-Poedit-KeywordsList: _;__\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: includes/class-wccc-admin.php:51
+#: includes/class-wccc-admin.php:56
 msgid "WooCommerce Carte Cultura - Impostazioni"
 msgstr ""
 
-#: includes/class-wccc-admin.php:51
+#: includes/class-wccc-admin.php:56
 msgid "WC Carte Cultura"
 msgstr ""
 
-#: includes/class-wccc-admin.php:386
+#: includes/class-wccc-admin.php:392
 msgid ""
 "Con questo strumento puoi generare un file .der necessario per richiedere "
 "il tuo certificato sul sito <a target='_blank' href='https://cartegiovani."
 "cultura.gov.it/giovanimeritoEsercente/#/login'>Carte Cultura</a>."
 msgstr ""
 
-#: includes/class-wccc-admin.php:462
+#: includes/class-wccc-admin.php:468
 msgid ""
 "Carica il file .cer ottenuto dal sito <a target='_blank' href='https://"
 "cartegiovani.cultura.gov.it/giovanimeritoEsercente/#/login'>Carte Cultura</"
 "a>"
 msgstr ""
 
-#: includes/class-wccc-admin.php:482
+#: includes/class-wccc-admin.php:488
 msgid ""
 "Attiva questa funzionalità per testare buoni Carta della Cultura Giovani e "
 "Carta del Merito in un ambiente di prova.<br>Richiedi i buoni test "
@@ -46,11 +46,11 @@ msgid ""
 "it\">numeroverde@cultura.gov.it</a>"
 msgstr ""
 
-#: includes/class-wccc-admin.php:541
+#: includes/class-wccc-admin.php:547
 msgid "Mostra il logo <i>Carte Cultura</i> nella pagine di checkout."
 msgstr ""
 
-#: includes/class-wccc-admin.php:549
+#: includes/class-wccc-admin.php:555
 msgid ""
 "Mostra il metodo di pagamento solo se il/ i prodotti a carrello sono "
 "acquistabili con buoni <i>Carta della Cultura Giovani</i> e <i>Carta del "
@@ -58,54 +58,54 @@ msgid ""
 "ambito di utilizzo."
 msgstr ""
 
-#: includes/class-wccc-admin.php:559
+#: includes/class-wccc-admin.php:565
 msgid ""
 "I buoni Carta della Cultura Giovani e Carta del merito verranno validati "
 "con il completamento manuale degli ordini."
 msgstr ""
 
-#: includes/class-wccc-admin.php:567
+#: includes/class-wccc-admin.php:573
 msgid "Escludi le spese di spedizione dal pagamento con le Carte Cultura."
 msgstr ""
 
-#: includes/class-wccc-admin.php:577
+#: includes/class-wccc-admin.php:583
 msgid ""
 "Nel caso in cui il buono <i>Carta della Cultura Giovani</i> o <i>Carta del "
 "Merito</i> inserito sia inferiore al totale a carrello, viene convertito in "
 "<i>Codice promozionale</i> ed applicato all'ordine."
 msgstr ""
 
-#: includes/class-wccc-admin.php:586
+#: includes/class-wccc-admin.php:592
 msgid ""
 "L'ordine verrà completato manualmente nei prossimi giorni e, "
 "contestualmente, verrà validato il buono Carte Cultura inserito. Riceverai "
 "una notifica email di conferma, grazie!"
 msgstr ""
 
-#: includes/class-wccc-admin.php:589
+#: includes/class-wccc-admin.php:595
 msgid "Messaggio della mail inviata all'utente al ricevimento dell'ordine."
 msgstr ""
 
-#: includes/class-wccc-admin.php:599
+#: includes/class-wccc-admin.php:605
 msgid ""
 "Oggetto della mail inviata all'utente nel caso in cui la validazione del "
 "buono non sia andata a buon fine."
 msgstr ""
 
-#: includes/class-wccc-admin.php:607
+#: includes/class-wccc-admin.php:613
 msgid ""
 "Intestazione della mail inviata all'utente nel caso in cui la validazione "
 "del buono non sia andata a buon fine."
 msgstr ""
 
-#: includes/class-wccc-admin.php:614
+#: includes/class-wccc-admin.php:620
 msgid ""
 "La validazone del buono Carte Cultura ha restituito un errore e non è stato "
 "possibile completare l'ordine, effettua il pagamento a <a href=\"[checkout-"
 "url]\">questo indirizzo</a>."
 msgstr ""
 
-#: includes/class-wccc-admin.php:620
+#: includes/class-wccc-admin.php:626
 msgid ""
 "Messaggio della mail inviata all'utente nel caso in cui la validazione del "
 "buono non sia andata a buon fine."
@@ -175,24 +175,24 @@ msgid ""
 "Non hai impostato una licenza e non sei in grado di ricevere aggiornamenti."
 msgstr ""
 
-#: plugin-update-checker/Puc/v5p3/Plugin/Ui.php:56
+#: plugin-update-checker/Puc/v5p4/Plugin/Ui.php:56
 msgid "View details"
 msgstr ""
 
-#: plugin-update-checker/Puc/v5p3/Plugin/Ui.php:79
+#: plugin-update-checker/Puc/v5p4/Plugin/Ui.php:79
 #, php-format
 msgid "More information about %s"
 msgstr ""
 
-#: plugin-update-checker/Puc/v5p3/Plugin/Ui.php:130
+#: plugin-update-checker/Puc/v5p4/Plugin/Ui.php:130
 msgid "Check for updates"
 msgstr ""
 
-#: plugin-update-checker/Puc/v5p3/Plugin/Ui.php:227
+#: plugin-update-checker/Puc/v5p4/Plugin/Ui.php:227
 #, php-format
 msgid "Unknown update checker status \"%s\""
 msgstr ""
 
-#: plugin-update-checker/Puc/v5p3/Vcs/PluginUpdateChecker.php:113
+#: plugin-update-checker/Puc/v5p4/Vcs/PluginUpdateChecker.php:113
 msgid "There is no changelog available."
 msgstr ""
