@@ -60,20 +60,20 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 			'wc_offline_form_fields',
 			array(
 				'enabled'     => array(
-					'title'   => __( 'Enable/Disable', 'woocommerce' ),
+					'title'   => __( 'Enable/Disable', 'wc-carte-cultura' ),
 					'type'    => 'checkbox',
 					'label'   => __( 'Abilita pagamento con Carte Cultura', 'wc-carte-cultura' ),
 					'default' => 'yes',
 				),
 				'title'       => array(
-					'title'       => __( 'Title', 'woocommerce' ),
+					'title'       => __( 'Title', 'wc-carte-cultura' ),
 					'type'        => 'text',
 					'description' => __( 'This controls the title which the user sees during checkout.', 'wc-carte-cultura' ),
 					'default'     => __( 'Carte Cultura', 'wc-carte-cultura' ),
 					'desc_tip'    => true,
 				),
 				'description' => array(
-					'title'   => __( 'Messaggio utente', 'woocommerce' ),
+					'title'   => __( 'Messaggio utente', 'wc-carte-cultura' ),
 					'type'    => 'textarea',
 					'default' => __( 'Consente ai diciottenni di utilizzare buoni Carta Cultura Giovani e Carta del Merito per l\'acquisto di materiale didattico.', 'wc-carte-cultura' ),
 				),
