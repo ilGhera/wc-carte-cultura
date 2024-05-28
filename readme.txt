@@ -1,9 +1,9 @@
 === WC Carte Cultura ===
 Contributors: ghera74
-Tags: Carte Cultura, Carta della Cultura Giovane, Carta del Merito, 18app, Carta del Docente, WooCommerce 
+Tags: WooCommerce, payment gateway, Carte Cultura, Carta Docente, 18app
 Stable tag: 0.9.0
 Requires at least: 4.0
-Tested up to: 6.4
+Tested up to: 6.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 

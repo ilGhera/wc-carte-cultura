@@ -5,7 +5,7 @@
  * Description: Abilita in WooCommerce il pagamento con Carte Cultura prevista dallo stato Italiano.
  * Version: 0.9.0
  * Requires at least: 4.0
- * Tested up to: 6.4
+ * Tested up to: 6.5
  * WC tested up to: 8
  * Author: ilGhera
  * Author URI: https://ilghera.com
