@@ -5,7 +5,7 @@
  * @author ilGhera
  * @package wc-carte-cultura/includes
  *
- * @since 0.9.0
+ * @since 1.0.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * WCCC_Soap_Client class
  *
- * @since 0.9.0
+ * @since 1.0.0
  */
 class WCCC_Soap_Client {
 
@@ -66,7 +66,6 @@ class WCCC_Soap_Client {
 	 */
 	public $import;
 
-
 	/**
 	 * The constructor
 	 *
@@ -96,7 +95,6 @@ class WCCC_Soap_Client {
 
 	}
 
-
 	/**
 	 * Restituisce il nome del certificato presente nella cartella "Private"
 	 *
@@ -109,7 +107,6 @@ class WCCC_Soap_Client {
 		}
 	}
 
-
 	/**
 	 * Restituisce la password memorizzata dall'utente nella compilazione del form
 	 *
@@ -118,7 +115,6 @@ class WCCC_Soap_Client {
 	public function get_user_passphrase() {
 		return base64_decode( get_option( 'wccc-password' ) );
 	}
-
 
 	/**
 	 * Istanzia il SoapClient
@@ -130,14 +126,17 @@ class WCCC_Soap_Client {
 				'local_cert'     => $this->local_cert,
 				'location'       => $this->location,
 				'passphrase'     => $this->passphrase,
+				'cache_wsdl'     => WSDL_CACHE_NONE,
 				'stream_context' => stream_context_create(
 					array(
 						'http' => array(
 							'user_agent' => 'PHP/SOAP',
 						),
 						'ssl'  => array(
-							'verify_peer'      => false,
-							'verify_peer_name' => false,
+							'verify_peer'       => false,
+							'verify_peer_name'  => false,
+							'allow_self_signed' => true,
+							'crypto_method'     => STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT,
 						),
 					)
 				),
@@ -146,7 +145,6 @@ class WCCC_Soap_Client {
 
 		return $soap_client;
 	}
-
 
 	/**
 	 * Chiamata Check di tipo 1 e 2
@@ -167,7 +165,6 @@ class WCCC_Soap_Client {
 
 		return $check;
 	}
-
 
 	/**
 	 * Chiamata Confirm utile ad utilizzare solo parte del valore del buono

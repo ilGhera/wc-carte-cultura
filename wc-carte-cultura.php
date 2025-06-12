@@ -3,18 +3,19 @@
  * Plugin name: WC Carte Cultura
  * Plugin URI: https://www.ilghera.com/product/woocommerce-carte-cultura-premium/
  * Description: Abilita in WooCommerce il pagamento con Carte Cultura prevista dallo stato Italiano.
- * Version: 0.9.0
- * Requires at least: 4.0
- * Tested up to: 6.5
- * WC tested up to: 8
  * Author: ilGhera
- * Author URI: https://ilghera.com
- * License: GPLv3
- * License URI: https://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain: wc-carte-cultura
- * Domain Path: /languages
  *
  * @package wc-carte-cultura
+ * Version: 1.0.0
+ * Stable tag: 1.0.0
+ * Author URI: https://ilghera.com
+ * Requires at least: 4.0
+ * Tested up to: 6.8
+ * WC tested up to: 9
+ * Text Domain: wc-carte-cultura
+ * Domain Path: /languages
+ * License: GPLv3
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -34,7 +35,7 @@ function wccc_activation() {
 	define( 'WCCC_URI', plugin_dir_url( __FILE__ ) );
 	define( 'WCCC_INCLUDES', WCCC_DIR . 'includes/' );
 	define( 'WCCC_INCLUDES_URI', WCCC_URI . 'includes/' );
-	define( 'WCCC_VERSION', '0.9.0' );
+	define( 'WCCC_VERSION', '1.0.0' );
 
 	/*Main directory di upload*/
 	$wp_upload_dir = wp_upload_dir();

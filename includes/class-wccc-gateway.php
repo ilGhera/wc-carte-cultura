@@ -5,7 +5,7 @@
  * @author ilGhera
  * @package wc-carte-cultura/includes
  *
- * @since 0.9.0
+ * @since 1.0.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * WCCC_Gateway class
  *
- * @since 0.9.0
+ * @since 1.0.0
  */
 class WCCC_Gateway extends WC_Payment_Gateway {
 
@@ -50,7 +50,6 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 
 	}
 
-
 	/**
 	 * Campi relativi al sistema di pagamento, modificabili nel back-end
 	 */
@@ -82,7 +81,6 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 
 	}
 
-
 	/**
 	 * Campo per l'inserimento del buono nella pagina di checkout
 	 */
@@ -98,7 +96,6 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 		</p>
 		<?php
 	}
-
 
 	/**
 	 * Restituisce la cateogia prodotto corrispondente al bene acquistabile con il buono
@@ -134,7 +131,6 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 		}
 
 	}
-
 
 	/**
 	 * Tutti i prodotti dell'ordine devono essere della tipologia (cat) consentita dal buono Carte Cultura.
@@ -181,7 +177,6 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 
 	}
 
-
 	/**
 	 * Add the shortcode to get the specific checkout URL.
 	 *
@@ -203,7 +198,6 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 
 	}
 
-
 	/**
 	 * Mostra il buono Carte Cultura nella thankyou page, nelle mail e nella pagina dell'ordine.
 	 *
@@ -221,9 +215,7 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 			echo '<p><strong>' . esc_html__( 'Buono Carte Cultura', 'wc-carte-cultura' ) . ': </strong>' . esc_html( $order->get_meta( 'wc-codice-carte-cultura' ) ) . '</p>';
 
 		}
-
 	}
-
 
 	/**
 	 * Processa il buono Carte Cultura inserito
@@ -258,32 +250,12 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 
 			} else {
 
-				$type = null;
+				try {
 
-				if ( $importo_buono === $import ) {
+					/* Validazione buono */
+					$operation = $soap_client->confirm();
 
-					$type = 'check';
-
-				} else {
-
-					$type = 'confirm';
-
-				}
-
-				if ( $type ) {
-
-					try {
-
-						/*Operazione differente in base al rapporto tra valore del buono e totale dell'ordine*/
-						if ( 'check' === $type ) {
-
-							$operation = $soap_client->check( 2 );
-
-						} else {
-
-							$operation = $soap_client->confirm();
-
-						}
+					if ( is_object( $operation ) && 'OK' === $operation->checkResp->esito ) {
 
 						/*Aggiungo il buono Carte Cultura all'ordine*/
 						$order->update_meta_data( 'wc-codice-carte-cultura', $wccc_code );
@@ -294,11 +266,14 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 						/*Svuota carrello*/
 						$woocommerce->cart->empty_cart();
 
-					} catch ( Exception $e ) {
+					} else {
 
-						$output = $e->detail->FaultVoucher->exceptionMessage;
-
+						$output = $operation->checkResp->esito;
 					}
+				} catch ( Exception $e ) {
+
+					$output = $e->detail->FaultVoucher->exceptionMessage;
+
 				}
 			}
 		} catch ( Exception $e ) {
@@ -310,7 +285,6 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 		return $output;
 
 	}
-
 
 	/**
 	 * Gestisce il processo di pagamento, verificando la validità del buono inserito dall'utente

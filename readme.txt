@@ -1,9 +1,9 @@
 === WC Carte Cultura ===
 Contributors: ghera74
 Tags: WooCommerce, payment gateway, Carte Cultura, Carta Docente, 18app
-Stable tag: 0.9.0
+Stable tag: 1.0.0
 Requires at least: 4.0
-Tested up to: 6.5
+Tested up to: 6.8
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -74,6 +74,13 @@ This plugin sends data to an external service, like the categories and the price
 5. Metodo di pagamento in pagina di checkout
 
 == Changelog ==
+
+= 1.0.0 =
+Data di rilascio: 12 Giugno, 2025
+
+    * Update: Supporto WP 6.8
+    * Update: Supporto WC 9.5
+    * Implementazione: WordPress Coding standards
 
 = 0.9.0 =
 Data di rilascio: 1 Febbraio, 2024

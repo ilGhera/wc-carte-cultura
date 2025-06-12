@@ -167,7 +167,7 @@ maintenance:
 name: WooCommerce Carte Cultura
 platforms:
   - web
-releaseDate: '2024-02-01'
+releaseDate: '2025-06-12'
 softwareType: addon
-softwareVersion: 0.9.0
+softwareVersion: 1.0.0
 url: 'https://github.com/ilGhera/wc-carte-cultura'

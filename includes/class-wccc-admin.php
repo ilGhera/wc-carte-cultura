@@ -5,7 +5,7 @@
  * @author ilGhera
  * @package wc-carte-cultura/includes
  *
- * @since 0.9.0
+ * @since 1.0.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * WCCC_Admin class
  *
- * @since 0.9.0
+ * @since 1.0.0
  */
 class WCCC_Admin {
 
@@ -45,7 +45,6 @@ class WCCC_Admin {
 
 	}
 
-
 	/**
 	 * Registra la pagina opzioni del plugin
 	 *
@@ -56,7 +55,6 @@ class WCCC_Admin {
 		add_submenu_page( 'woocommerce', __( 'WooCommerce Carte Cultura - Impostazioni', 'wc-carte-cultura' ), __( 'WC Carte Cultura', 'wc-carte-cultura' ), 'manage_options', 'wccc-settings', array( $this, 'wccc_settings' ) );
 
 	}
-
 
 	/**
 	 * Verifica la presenza di un file per estenzione
@@ -78,7 +76,6 @@ class WCCC_Admin {
 		return $output;
 
 	}
-
 
 	/**
 	 * Cancella il certificato
@@ -102,7 +99,6 @@ class WCCC_Admin {
 
 	}
 
-
 	/**
 	 * Restituisce il nome esatto del bene Carte Cultura partendo dallo slug
 	 *
@@ -123,7 +119,6 @@ class WCCC_Admin {
 		}
 
 	}
-
 
 	/**
 	 * Categoria per la verifica in fase di checkout
@@ -207,7 +202,6 @@ class WCCC_Admin {
 			echo '</li>';
 	}
 
-
 	/**
 	 * Aggiunge una nuova categoria per la verifica in fase di checkout
 	 *
@@ -230,7 +224,6 @@ class WCCC_Admin {
 		exit;
 	}
 
-
 	/**
 	 * Pulsante call to action Premium
 	 *
@@ -247,7 +240,6 @@ class WCCC_Admin {
 		return $output;
 
 	}
-
 
 	/**
 	 * Attivazione certificato
@@ -273,7 +265,6 @@ class WCCC_Admin {
 		}
 	}
 
-
 	/**
 	 * Funzionalita Sandbox
 	 *
@@ -293,7 +284,6 @@ class WCCC_Admin {
 		exit();
 
 	}
-
 
 	/**
 	 * Pagina opzioni plugin
@@ -647,7 +637,6 @@ class WCCC_Admin {
 
 	}
 
-
 	/**
 	 * Mostra un mesaggio d'errore nel caso in cui il certificato non isa valido
 	 *
@@ -662,7 +651,6 @@ class WCCC_Admin {
 		<?php
 
 	}
-
 
     /**
      * Plugin upload directory
@@ -682,7 +670,6 @@ class WCCC_Admin {
         return $output;
 
     }
-
 
     /**
      * Allow upload pem files 
@@ -706,7 +693,6 @@ class WCCC_Admin {
         return $file;
 
     }
-
 
 	/**
 	 * Salvataggio delle impostazioni dell'utente
