@@ -272,13 +272,17 @@ class WCCC_Gateway extends WC_Payment_Gateway {
 					}
 				} catch ( Exception $e ) {
 
-					$output = $e->detail->FaultVoucher->exceptionMessage;
+					$output = isset( $e->detail->FaultVoucher->exceptionMessage )
+						? $e->detail->FaultVoucher->exceptionMessage
+						: $e->getMessage();
 
 				}
 			}
 		} catch ( Exception $e ) {
 
-			$output = $e->detail->FaultVoucher->exceptionMessage;
+			$output = isset( $e->detail->FaultVoucher->exceptionMessage )
+				? $e->detail->FaultVoucher->exceptionMessage
+				: $e->getMessage();
 
 		}
 
