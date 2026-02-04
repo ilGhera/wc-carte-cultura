@@ -1,7 +1,7 @@
 === WC Carte Cultura ===
 Contributors: ghera74
 Tags: WooCommerce, payment gateway, Carte Cultura, Carta Docente, 18app
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 Requires at least: 4.0
 Tested up to: 6.8
 License: GPLv3
@@ -74,6 +74,14 @@ This plugin sends data to an external service, like the categories and the price
 5. Metodo di pagamento in pagina di checkout
 
 == Changelog ==
+
+= 1.1.0 =
+Data di rilascio: 4 Febbraio, 2026
+
+    * Implementazione: Mostra data di scadenza del certificato .pem
+    * Implementazione: Gestione password solo per certificati con chiave privata cifrata
+    * Miglioramento: Utilizzo WP_Filesystem API per upload certificato
+    * Update: Supporto WP 6.8
 
 = 1.0.0 =
 Data di rilascio: 12 Giugno, 2025

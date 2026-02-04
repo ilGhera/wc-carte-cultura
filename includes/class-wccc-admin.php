@@ -225,6 +225,72 @@ class WCCC_Admin {
 	}
 
 	/**
+	 * Verifica se il certificato ha una chiave privata cifrata
+	 *
+	 * @param string $cert_path il percorso del certificato.
+	 *
+	 * @return bool true se la chiave è cifrata, false altrimenti.
+	 */
+	public static function is_certificate_encrypted( $cert_path ) {
+
+		if ( ! file_exists( $cert_path ) ) {
+			return false;
+		}
+
+		$cert_content = file_get_contents( $cert_path );
+
+		if ( ! $cert_content ) {
+			return false;
+		}
+
+		return ( false !== strpos( $cert_content, 'ENCRYPTED PRIVATE KEY' ) );
+	}
+
+	/**
+	 * Restituisce la data di scadenza del certificato .pem
+	 *
+	 * @param string $cert_path il percorso del certificato.
+	 *
+	 * @return array|false array con 'date', 'expired' e 'expiring', false in caso di errore.
+	 */
+	public function get_certificate_expiry( $cert_path ) {
+
+		if ( ! file_exists( $cert_path ) ) {
+			return false;
+		}
+
+		$cert_content = file_get_contents( $cert_path );
+
+		if ( ! $cert_content ) {
+			return false;
+		}
+
+		$cert = openssl_x509_read( $cert_content );
+
+		if ( ! $cert ) {
+			return false;
+		}
+
+		$cert_info = openssl_x509_parse( $cert );
+
+		if ( ! $cert_info || ! isset( $cert_info['validTo_time_t'] ) ) {
+			return false;
+		}
+
+		$expiry_timestamp = $cert_info['validTo_time_t'];
+		$now              = time();
+		$days_until       = floor( ( $expiry_timestamp - $now ) / DAY_IN_SECONDS );
+		$is_expired       = $expiry_timestamp < $now;
+		$is_expiring      = ! $is_expired && $days_until <= 30;
+
+		return array(
+			'date'     => date_i18n( get_option( 'date_format' ), $expiry_timestamp ),
+			'expired'  => $is_expired,
+			'expiring' => $is_expiring,
+		);
+	}
+
+	/**
 	 * Pulsante call to action Premium
 	 *
 	 * @param bool $no_margin aggiunge la classe CSS con true.
@@ -325,12 +391,29 @@ class WCCC_Admin {
 								echo '<td>';
 		if ( $file = self::get_the_file( '.pem' ) ) {
 
-			$activation = $this->wccc_cert_activation();
+			$activation  = $this->wccc_cert_activation();
+			$cert_expiry = $this->get_certificate_expiry( $file );
+
+			/* Classe CSS per la scadenza */
+			$expiry_class = '';
+			if ( $cert_expiry ) {
+				if ( $cert_expiry['expired'] ) {
+					$expiry_class = ' expired';
+				} elseif ( $cert_expiry['expiring'] ) {
+					$expiry_class = ' expiring';
+				}
+			}
 
 			if ( 'ok' === $activation ) {
 
 				echo '<span class="cert-loaded">' . esc_html( basename( $file ) ) . '</span>';
 				echo '<a class="button delete wccc-delete-certificate">' . esc_html__( 'Elimina', 'wc-carte-cultura' ) . '</a>';
+
+				if ( $cert_expiry ) {
+					/* Translators: the certificate expiry date */
+					echo '<p class="description wccc-cert-expiry' . esc_attr( $expiry_class ) . '">' . sprintf( esc_html__( 'Scadenza: %s', 'wc-carte-cultura' ), esc_html( $cert_expiry['date'] ) ) . '</p>';
+				}
+
 				echo '<p class="description">' . esc_html__( 'File caricato e attivato correttamente.', 'wc-carte-cultura' ) . '</p>';
 
 				update_option( 'wccc-cert-activation', 1 );
@@ -340,6 +423,11 @@ class WCCC_Admin {
 				echo '<span class="cert-loaded error">' . esc_html( basename( $file ) ) . '</span>';
 				echo '<a class="button delete wccc-delete-certificate">' . esc_html__( 'Elimina', 'wc-carte-cultura' ) . '</a>';
 
+				if ( $cert_expiry ) {
+					/* Translators: the certificate expiry date */
+					echo '<p class="description wccc-cert-expiry' . esc_attr( $expiry_class ) . '">' . sprintf( esc_html__( 'Scadenza: %s', 'wc-carte-cultura' ), esc_html( $cert_expiry['date'] ) ) . '</p>';
+				}
+
 				/* Translators: the error message */
 				echo '<p class="description">' . sprintf( esc_html__( 'L\'attivazione del certificato ha restituito il seguente errore: %s', 'wc-carte-cultura' ), esc_html( $activation ) ) . '</p>';
 
@@ -348,7 +436,6 @@ class WCCC_Admin {
 			}
 		} else {
 
-			/* echo '<input type="file" accept=".pem" name="wccc-certificate" class="wccc-certificate">'; */
 			echo '<input type="file" name="wccc-certificate" class="wccc-certificate">';
 			echo '<p class="description">' . esc_html__( 'Carica il certificato (.pem) necessario alla connessione con Carta della Cultura Giovani e Carta del Merito', 'wc-carte-cultura' ) . '</p>';
 
@@ -357,15 +444,24 @@ class WCCC_Admin {
 								echo '</td>';
 							echo '</tr>';
 
-							/*Password utilizzata per la creazione del certificato*/
+							/*Password utilizzata per la creazione del certificato - solo se chiave cifrata o nuovo upload*/
+							$cert_file    = self::get_the_file( '.pem' );
+							$is_encrypted = $cert_file ? self::is_certificate_encrypted( $cert_file ) : true;
+
+							if ( $is_encrypted || ! $cert_file ) {
+								echo '<tr class="wccc-password-row">';
+									echo '<th scope="row">' . esc_html__( 'Password', 'wc-carte-cultura' ) . '</th>';
+									echo '<td>';
+										echo '<input type="password" name="wccc-password" placeholder="**********" value="' . esc_attr( $passphrase ) . '"' . ( $is_encrypted ? ' required' : '' ) . '>';
+										echo '<p class="description">' . esc_html__( 'La password utilizzata per la generazione del certificato', 'wc-carte-cultura' ) . '</p>';
+									echo '</td>';
+								echo '</tr>';
+							}
+
 							echo '<tr>';
-								echo '<th scope="row">' . esc_html__( 'Password', 'wc-carte-cultura' ) . '</th>';
+								echo '<th scope="row"></th>';
 								echo '<td>';
-									echo '<input type="password" name="wccc-password" placeholder="**********" value="' . esc_attr( $passphrase ) . '" required>';
-									echo '<p class="description">' . esc_html__( 'La password utilizzata per la generazione del certificato', 'wc-carte-cultura' ) . '</p>';
-
 									wp_nonce_field( 'wccc-upload-certificate', 'wccc-certificate-nonce' );
-
 									echo '<input type="hidden" name="wccc-certificate-hidden" value="1">';
 									echo '<input type="submit" class="button-primary wccc-button" value="' . esc_html__( 'Salva certificato', 'wc-carte-cultura' ) . '">';
 								echo '</td>';
@@ -652,6 +748,21 @@ class WCCC_Admin {
 
 	}
 
+	/**
+	 * Messaggio di errore per password certificato errata
+	 *
+	 * @return void
+	 */
+	public function wrong_certificate_password() {
+
+		?>
+		<div class="notice notice-error">
+			<p><?php esc_html_e( 'ATTENZIONE! La password inserita non è corretta per questo certificato.', 'wc-carte-cultura' ); ?></p>
+		</div>
+		<?php
+
+	}
+
     /**
      * Plugin upload directory
      *
@@ -703,11 +814,11 @@ class WCCC_Admin {
 
 		if ( isset( $_POST['wccc-certificate-hidden'], $_POST['wccc-certificate-nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wccc-certificate-nonce'] ) ), 'wccc-upload-certificate' ) ) {
 
-            /* Temporary filter start */
-            add_filter( 'upload_dir', array( $this, 'wccc_upload_dir' ) );
+			/*Password*/
+			$wccc_password = isset( $_POST['wccc-password'] ) ? sanitize_text_field( wp_unslash( $_POST['wccc-password'] ) ) : '';
 
 			/*Carica certificato*/
-			if ( isset( $_FILES['wccc-certificate'] ) ) {
+			if ( isset( $_FILES['wccc-certificate'] ) && ! empty( $_FILES['wccc-certificate']['name'] ) ) {
 
 				$info = isset( $_FILES['wccc-certificate']['name'] ) ? pathinfo( sanitize_text_field( wp_unslash( $_FILES['wccc-certificate']['name'] ) ) ) : null;
 				$name = isset( $info['basename'] ) ? sanitize_file_name( $info['basename'] ) : null;
@@ -718,14 +829,33 @@ class WCCC_Admin {
 
 						if ( isset( $_FILES['wccc-certificate']['tmp_name'] ) ) {
 
-							$tmp_name = sanitize_text_field( wp_unslash( $_FILES['wccc-certificate']['tmp_name'] ) );
+							$tmp_name     = sanitize_text_field( wp_unslash( $_FILES['wccc-certificate']['tmp_name'] ) );
+							$is_encrypted = self::is_certificate_encrypted( $tmp_name );
 
-                            if ( ! function_exists( 'wp_handle_upload' ) ) {
-                                require_once( ABSPATH . 'wp-admin/includes/file.php' );
-                            }
+							/* Carica sempre il certificato */
+							global $wp_filesystem;
+							if ( empty( $wp_filesystem ) ) {
+								require_once ABSPATH . 'wp-admin/includes/file.php';
+								WP_Filesystem();
+							}
+							$wp_filesystem->move( $tmp_name, WCCC_PRIVATE . $name, true );
 
-                            $move_file = wp_handle_upload( $_FILES['wccc-certificate'], array( 'test_form' => false, 'test_type' => true, 'mimes' => array( 'pem' => 'application/x-x509-ca-cert') ) );
+							/* Valida la password solo se la chiave è cifrata */
+							if ( $is_encrypted && $wccc_password ) {
+								$cert_content = file_get_contents( WCCC_PRIVATE . $name );
+								$private_key  = openssl_pkey_get_private( $cert_content, $wccc_password );
 
+								if ( false === $private_key ) {
+									/* Password errata per chiave cifrata */
+									add_action( 'admin_notices', array( $this, 'wrong_certificate_password' ) );
+								} else {
+									/* Password corretta, salva nel db */
+									update_option( 'wccc-password', base64_encode( $wccc_password ) );
+								}
+							} elseif ( $wccc_password ) {
+								/* Chiave non cifrata, salva comunque la password */
+								update_option( 'wccc-password', base64_encode( $wccc_password ) );
+							}
 						}
 					} else {
 
@@ -733,16 +863,6 @@ class WCCC_Admin {
 
 					}
 				}
-			}
-
-			/*Password*/
-			$wccc_password = isset( $_POST['wccc-password'] ) ? sanitize_text_field( wp_unslash( $_POST['wccc-password'] ) ) : '';
-
-			/*Salvo passw nel db*/
-			if ( $wccc_password ) {
-
-				update_option( 'wccc-password', base64_encode( $wccc_password ) );
-
 			}
 		}
 

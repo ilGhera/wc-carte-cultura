@@ -146,7 +146,20 @@ span.wccc-alert {
 	padding: 0.6rem;
 	background: #F2DEDE;
 	border-radius: 0.2rem;
-	color: #a94442;	
+	color: #a94442;
+}
+
+/* Certificate expiry styles */
+.wccc-cert-expiry {
+	font-weight: 600;
+}
+
+.wccc-cert-expiry.expired {
+	color: #dc3232;
+}
+
+.wccc-cert-expiry.expiring {
+	color: #dba617;
 }
 
 .wrap-left {

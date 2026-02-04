@@ -6,7 +6,7 @@
  * Author: ilGhera
  *
  * @package wc-carte-cultura
- * Version: 1.0.0
+ * Version: 1.1.0
  * Stable tag: 1.0.0
  * Author URI: https://ilghera.com
  * Requires at least: 4.0
@@ -35,7 +35,7 @@ function wccc_activation() {
 	define( 'WCCC_URI', plugin_dir_url( __FILE__ ) );
 	define( 'WCCC_INCLUDES', WCCC_DIR . 'includes/' );
 	define( 'WCCC_INCLUDES_URI', WCCC_URI . 'includes/' );
-	define( 'WCCC_VERSION', '1.0.0' );
+	define( 'WCCC_VERSION', '1.1.0' );
 
 	/*Main directory di upload*/
 	$wp_upload_dir = wp_upload_dir();
