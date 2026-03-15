@@ -86,11 +86,15 @@ class WCCC_Admin {
 
 		if ( isset( $_POST['wccc-delete'], $_POST['delete-nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['delete-nonce'] ) ), 'wccc-del-cert-nonce' ) ) {
 
-			$cert = isset( $_POST['cert'] ) ? sanitize_text_field( wp_unslash( $_POST['cert'] ) ) : '';
+			$cert = isset( $_POST['cert'] ) ? sanitize_file_name( wp_unslash( $_POST['cert'] ) ) : '';
 
 			if ( $cert ) {
 
-				unlink( WCCC_PRIVATE . $cert );
+				$file_path = realpath( WCCC_PRIVATE . $cert );
+
+				if ( $file_path && 0 === strpos( $file_path, realpath( WCCC_PRIVATE ) ) ) {
+					unlink( $file_path );
+				}
 
 			}
 		}
