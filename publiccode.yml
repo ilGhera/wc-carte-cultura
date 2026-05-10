@@ -1,13 +1,12 @@
-# This repository adheres to the publiccode.yml standard by including this 
+# This repository adheres to the publiccode.yml standard by including this
 # metadata file that makes public software easily discoverable.
-# More info at https://github.com/italia/publiccode.yml
+# More info at https://github.com/publiccodeyml/publiccode.yml
 
-publiccodeYmlVersion: '0.2'
+publiccodeYmlVersion: '0'
 categories:
   - e-commerce
 description:
   it:
-    documentation: 'https://www.ilghera.com/category/documentation/wc-carta-docente-18app/'
     features:
       - Carica il tuo certificato .pem
       - |-
@@ -26,7 +25,6 @@ description:
       - |-
         (Premium) Opzione ordini in sospeso con validazione buoni solo a
         completamento manuale dell'ordine
-    genericName: WordPress plugin
     longDescription: |
       Ogni insegnante di ruolo, in Italia, ha a disposizione un bonus di € 500
 
@@ -109,7 +107,7 @@ description:
 
 
 
-      Dopo aver attivato il certificato, **Woocommerce Carte Cultura** 
+      Dopo aver attivato il certificato, **Woocommerce Carte Cultura**
 
       aggiungerà il nuovo metodo di pagamento tra quelli disponibili nella
 
@@ -137,22 +135,9 @@ description:
 developmentStatus: stable
 intendedAudience:
   countries:
-    - it
-it:
-  conforme:
-    gdpr: false
-    lineeGuidaDesign: false
-    misureMinimeSicurezza: false
-    modelloInteroperabilita: false
-  countryExtensionVersion: '0.2'
-  piattaforme:
-    anpr: true
-    cie: false
-    pagopa: false
-    spid: false
+    - IT
 legal:
   license: GPL-3.0-only
-  repoOwner: ilGhera | WordPress Development
 localisation:
   availableLanguages:
     - it
