@@ -167,6 +167,7 @@ maintenance:
 name: WooCommerce Carte Cultura
 organisation:
   name: ilGhera | Software solutions
+  uri: https://ilghera.com
 platforms:
   - web
 releaseDate: '2026-02-04'
