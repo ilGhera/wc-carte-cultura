@@ -78,8 +78,6 @@ This plugin sends data to an external service, like the categories and the price
 = 1.1.1 =
 Data di rilascio: 13 Agosto, 2026
 
-    * Compatibilità: WordPress 7.0
-    * Compatibilità: WooCommerce 11.0.1
     * Correzione bug: aggiunge organisation.uri a CC
     * Correzione bug: aggiungi organisation field al publiccode.yml (CC)
 
