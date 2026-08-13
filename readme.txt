@@ -76,9 +76,12 @@ This plugin sends data to an external service, like the categories and the price
 == Changelog ==
 
 = 1.1.1 =
-Data di rilascio: 15 Marzo, 2026
+Data di rilascio: 13 Agosto, 2026
 
-    * Sicurezza: Fix path traversal vulnerability nella cancellazione certificati (CVE-2026-2421)
+    * Compatibilità: WordPress 7.0
+    * Compatibilità: WooCommerce 11.0.1
+    * Correzione bug: aggiunge organisation.uri a CC
+    * Correzione bug: aggiungi organisation field al publiccode.yml (CC)
 
 = 1.1.0 =
 Data di rilascio: 4 Febbraio, 2026
