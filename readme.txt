@@ -76,7 +76,7 @@ This plugin sends data to an external service, like the categories and the price
 == Changelog ==
 
 = 1.1.1 =
-Data di rilascio: 13 Agosto, 2026
+Data di rilascio: 14 Agosto, 2026
 
     * Correzione bug: aggiunge organisation.uri a CC
     * Correzione bug: aggiungi organisation field al publiccode.yml (CC)
