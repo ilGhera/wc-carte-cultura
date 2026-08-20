@@ -3,7 +3,7 @@ Contributors: ghera74
 Tags: WooCommerce, payment gateway, Carte Cultura, Carta Docente, 18app
 Stable tag: 1.1.1
 Requires at least: 4.0
-Tested up to: 7.0
+Tested up to: 7.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
