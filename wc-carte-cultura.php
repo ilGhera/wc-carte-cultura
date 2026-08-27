@@ -10,7 +10,7 @@
  * Stable tag: 1.0.0
  * Author URI: https://ilghera.com
  * Requires at least: 4.0
- * Tested up to: 6.8
+ * Tested up to: 7.1
  * WC tested up to: 11.0.1
  * Text Domain: wc-carte-cultura
  * Domain Path: /languages
