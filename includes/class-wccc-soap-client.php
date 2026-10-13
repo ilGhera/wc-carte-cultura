@@ -120,6 +120,13 @@ class WCCC_Soap_Client {
 	 * Istanzia il SoapClient
 	 */
 	public function soap_client() {
+
+		/* Senza estensione SOAP new SoapClient genera un Error non intercettabile come Exception */
+		if ( ! class_exists( 'SoapClient' ) ) {
+			error_log( 'WCCC: estensione PHP SOAP non attiva, impossibile verificare il buono' );
+			throw new Exception( __( 'servizio di verifica del buono momentaneamente non disponibile.', 'wc-carte-cultura' ) );
+		}
+
 		$soap_client = new SoapClient(
 			$this->wsdl,
 			array(

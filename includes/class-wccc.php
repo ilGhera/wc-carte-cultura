@@ -59,7 +59,8 @@ class WCCC {
 
 		$sandbox = get_option( 'wccc-sandbox' );
 
-		if ( $sandbox || ( WCCC_Admin::get_the_file( '.pem' ) && get_option( 'wccc-cert-activation' ) ) ) {
+		/* Senza estensione SOAP il buono non può essere verificato, il metodo di pagamento non viene mostrato */
+		if ( class_exists( 'SoapClient' ) && ( $sandbox || ( WCCC_Admin::get_the_file( '.pem' ) && get_option( 'wccc-cert-activation' ) ) ) ) {
 
 			$methods[] = 'WCCC_Gateway';
 

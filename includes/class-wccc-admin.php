@@ -259,7 +259,7 @@ class WCCC_Admin {
 	 */
 	public function get_certificate_expiry( $cert_path ) {
 
-		if ( ! file_exists( $cert_path ) ) {
+		if ( ! file_exists( $cert_path ) || ! function_exists( 'openssl_x509_read' ) ) {
 			return false;
 		}
 
@@ -318,6 +318,10 @@ class WCCC_Admin {
 	 */
 	public function wccc_cert_activation() {
 
+		if ( ! class_exists( 'SoapClient' ) ) {
+			return __( 'l\'estensione PHP SOAP non è attiva sul server, contatta il tuo provider di hosting per abilitarla. Fino ad allora il metodo di pagamento non verrà mostrato al checkout.', 'wc-carte-cultura' );
+		}
+
 		$soap_client = new WCCC_Soap_Client( '11aa22bb', '' );
 
 		try {
@@ -325,9 +329,9 @@ class WCCC_Admin {
 			$operation = $soap_client->check( 1 );
 			return 'ok';
 
-		} catch ( Exception $e ) {
+		} catch ( Throwable $e ) {
 
-			$notice = isset( $e->detail->FaultVoucher->exceptionMessage ) ? $e->detail->FaultVoucher->exceptionMessage : $e->faultstring;
+			$notice = isset( $e->detail->FaultVoucher->exceptionMessage ) ? $e->detail->FaultVoucher->exceptionMessage : $e->getMessage();
 			error_log( 'Error wccc_cert_activation: ' . print_r( $e, true ) );
 
 			return $notice;
