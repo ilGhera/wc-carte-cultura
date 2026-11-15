@@ -10,6 +10,32 @@
 
 defined( 'ABSPATH' ) || exit;
 
+if ( ! function_exists( 'wccc_ilghera_url' ) ) {
+
+	/**
+	 * Indirizzo di una pagina prodotto su ilghera.com: lingua dell'utente e tracciamento.
+	 *
+	 * @param string $slug     lo slug del prodotto, uguale nelle due lingue.
+	 * @param string $campaign utm_campaign: settings (upgrade) o license (rinnovo).
+	 *
+	 * @return string
+	 */
+	function wccc_ilghera_url( $slug, $campaign = 'settings' ) {
+
+		$locale = function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale();
+		$path   = ( 0 === strpos( $locale, 'it' ) ) ? 'it/prodotto' : 'product';
+
+		return add_query_arg(
+			array(
+				'utm_source'   => 'wp-plugin',
+				'utm_medium'   => 'wc-carte-cultura',
+				'utm_campaign' => $campaign,
+			),
+			'https://www.ilghera.com/' . $path . '/' . $slug . '/'
+		);
+	}
+}
+
 /**
  * WCCC_Admin class
  *
@@ -304,7 +330,7 @@ class WCCC_Admin {
 	public function get_go_premium( $no_margin = false ) {
 
 		$output      = '<span class="label label-warning premium' . ( $no_margin ? ' no-margin' : null ) . '">';
-			$output .= '<a href="https://www.ilghera.com/product/woocommerce-carte-cultura-premium" target="_blank">Premium</a>';
+			$output .= '<a href="' . esc_url( wccc_ilghera_url( 'woocommerce-carte-cultura-premium', 'settings' ) ) . '" target="_blank">Premium</a>';
 		$output     .= '</span>';
 
 		return $output;
