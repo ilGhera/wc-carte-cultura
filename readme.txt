@@ -78,7 +78,7 @@ This plugin sends data to an external service, like the categories and the price
 = 1.1.9 =
 Data di rilascio: 19 Novembre, 2026
 
-    * Correzione bug: barra laterale delle impostazioni, ripristinato l'iframe
+    * Correzione bug: barra laterale delle impostazioni ripristinata
     * Correzione bug: link al premium nella lingua dell'utente, con tracciamento
 
 = 1.1.8 =
